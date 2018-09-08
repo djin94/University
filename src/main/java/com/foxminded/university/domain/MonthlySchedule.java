@@ -3,12 +3,19 @@ package com.foxminded.university.domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class MonthlySchedule {
     private List<DailySchedule> dailySchedules = new ArrayList<>();
     private int month;
     private int year;
+
+    public void addDailySchedule(DailySchedule dailySchedule) {
+        dailySchedules.add(dailySchedule);
+    }
+
+    public void removeDailySchedule(DailySchedule dailySchedule) {
+        dailySchedules.remove(dailySchedule);
+    }
 
     public DailySchedule getDailySchedule(LocalDate date) {
         for (DailySchedule dailySchedule : dailySchedules) {

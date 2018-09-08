@@ -7,6 +7,14 @@ public class University {
     private String name;
     private List<Faculty> faculties = new ArrayList<>();
 
+    public void addFaculty(Faculty faculty) {
+        faculties.add(faculty);
+    }
+
+    public void removeFaculty(Faculty faculty) {
+        faculties.remove(faculty);
+    }
+
     public void update(University university) {
         this.name = university.name;
         this.faculties.clear();

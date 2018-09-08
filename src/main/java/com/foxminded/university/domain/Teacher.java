@@ -7,6 +7,20 @@ public class Teacher extends Person {
     private int employeeId;
     private List<Subject> subjects = new ArrayList<>();
 
+    public void addSubject(Subject subject) {
+        subjects.add(subject);
+    }
+
+    public void removeSubject(Subject subject) {
+        subjects.remove(subject);
+    }
+
+    public void update(Teacher teacher) {
+        this.employeeId = teacher.employeeId;
+        this.subjects.clear();
+        this.subjects.addAll(teacher.subjects);
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }

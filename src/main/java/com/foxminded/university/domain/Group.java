@@ -7,6 +7,14 @@ public class Group {
     private String name;
     private List<Student> students = new ArrayList<>();
 
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public void removeStudent(Student student) {
+        students.remove(student);
+    }
+
     public void update(Group group) {
         this.name = group.name;
         this.students.clear();
