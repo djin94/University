@@ -3,6 +3,7 @@ package com.foxminded.university.domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MonthlySchedule {
     private List<DailySchedule> dailySchedules = new ArrayList<>();
@@ -26,36 +27,36 @@ public class MonthlySchedule {
     }
 
     public List<DailySchedule> getMonthlyScheduleForTeacher(Teacher teacher) {
-        List<DailySchedule> dailySchedulesForTeacher = new ArrayList<>();
+        List<DailySchedule> monthlyScheduleForTeacher = new ArrayList<>();
         for (DailySchedule dailySchedule : dailySchedules) {
             DailySchedule dailyScheduleForTeacher = new DailySchedule();
             dailyScheduleForTeacher.setDate(dailySchedule.getDate());
             dailyScheduleForTeacher.setLessons(dailySchedule.getDailyScheduleForTeacher(teacher));
-            dailySchedulesForTeacher.add(dailyScheduleForTeacher);
+            monthlyScheduleForTeacher.add(dailyScheduleForTeacher);
         }
-        return dailySchedulesForTeacher;
+        return monthlyScheduleForTeacher;
     }
 
     public List<DailySchedule> getMonthlyScheduleForStudent(Student student) {
-        List<DailySchedule> dailySchedulesForStudent = new ArrayList<>();
+        List<DailySchedule> monthlyScheduleForStudent = new ArrayList<>();
         for (DailySchedule dailySchedule : dailySchedules) {
             DailySchedule dailyScheduleForStudent = new DailySchedule();
             dailyScheduleForStudent.setDate(dailySchedule.getDate());
             dailyScheduleForStudent.setLessons(dailySchedule.getDailyScheduleForStudent(student));
-            dailySchedulesForStudent.add(dailyScheduleForStudent);
+            monthlyScheduleForStudent.add(dailyScheduleForStudent);
         }
-        return dailySchedulesForStudent;
+        return monthlyScheduleForStudent;
     }
 
     public List<DailySchedule> getMonthlyScheduleForGroup(Group group) {
-        List<DailySchedule> dailySchedulesForGroup = new ArrayList<>();
+        List<DailySchedule> monthlyScheduleForGroup = new ArrayList<>();
         for (DailySchedule dailySchedule : dailySchedules) {
             DailySchedule dailyScheduleForGroup = new DailySchedule();
             dailyScheduleForGroup.setDate(dailySchedule.getDate());
             dailyScheduleForGroup.setLessons(dailySchedule.getDailyScheduleForGroup(group));
-            dailySchedulesForGroup.add(dailyScheduleForGroup);
+            monthlyScheduleForGroup.add(dailyScheduleForGroup);
         }
-        return dailySchedulesForGroup;
+        return monthlyScheduleForGroup;
     }
 
     public void update(MonthlySchedule monthlySchedule) {

@@ -3,6 +3,7 @@ package com.foxminded.university.domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DailySchedule {
     private List<Lesson> lessons = new ArrayList<>();
@@ -62,5 +63,21 @@ public class DailySchedule {
 
     public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DailySchedule)) {
+            return false;
+        }
+        DailySchedule that = (DailySchedule) o;
+        return Objects.equals(lessons, that.lessons) &&
+                Objects.equals(date, that.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lessons, date);
     }
 }
