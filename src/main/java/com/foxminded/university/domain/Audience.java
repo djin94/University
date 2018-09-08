@@ -29,9 +29,9 @@ public class Audience {
         this.type = type;
     }
 
-    public void update(Audience audience){
-        this.number = audience.getNumber();
-        this.building = audience.getBuilding();
-        this.type = audience.getType();
+    public void update(Audience audience) {
+        this.number = audience.number;
+        this.building = audience.building;
+        this.type = audience.type;
     }
 }
