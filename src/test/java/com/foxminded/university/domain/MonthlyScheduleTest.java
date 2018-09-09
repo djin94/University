@@ -19,12 +19,13 @@ public class MonthlyScheduleTest {
     private Student kabatovStudent;
     private Teacher holopovTeacher;
     private Subject plisSubject;
-    private MonthlySchedule monthlySchedule;
+    private MonthlySchedule monthlyScheduleForUniversity;
     private Lesson plisLesson;
     private DailySchedule sep10DailySchedule;
 
     private List<DailySchedule> monthlyScheduleForHolopov;
     private List<DailySchedule> monthlyScheduleForKabatov;
+    private List<DailySchedule> monthlyScheduleForGroup3033;
 
     @Before
     public void setUp() {
@@ -79,31 +80,44 @@ public class MonthlyScheduleTest {
         sep10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
         sep10DailySchedule.addLesson(plisLesson);
 
-        monthlySchedule = new MonthlySchedule();
-        monthlySchedule.setMonth(9);
-        monthlySchedule.setYear(2018);
-        monthlySchedule.addDailySchedule(sep10DailySchedule);
+        monthlyScheduleForUniversity = new MonthlySchedule();
+        monthlyScheduleForUniversity.setMonth(9);
+        monthlyScheduleForUniversity.setYear(2018);
+        monthlyScheduleForUniversity.addDailySchedule(sep10DailySchedule);
 
         monthlyScheduleForHolopov = new ArrayList<>();
         monthlyScheduleForHolopov.add(sep10DailySchedule);
 
         monthlyScheduleForKabatov = new ArrayList<>();
         monthlyScheduleForKabatov.add(sep10DailySchedule);
+
+        monthlyScheduleForGroup3033 = new ArrayList<>();
+        monthlyScheduleForGroup3033.add(sep10DailySchedule);
     }
 
     @Test
     public void shouldReturnMonthlyScheduleForTeacher_WhenInvokeMonthlyScheduleForTeacher() {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForHolopov;
-        List<DailySchedule> actualMonthlySchedule = monthlySchedule.getMonthlyScheduleForTeacher(holopovTeacher);
+        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForTeacher(holopovTeacher);
 
         assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
     }
 
     @Test
-    public void shouldReturnMonthlyScheduleForStudent_WhenInvokeMonthlyScheduleForStudent(){
+    public void shouldReturnMonthlyScheduleForStudent_WhenInvokeMonthlyScheduleForStudent() {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForKabatov;
-        List<DailySchedule> actualMonthlySchedule = monthlySchedule.getMonthlyScheduleForStudent(kabatovStudent);
+        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForStudent(kabatovStudent);
 
-        assertArrayEquals(expectedMonthlySchedule.toArray(),actualMonthlySchedule.toArray());
+        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
     }
+
+    @Test
+    public void shouldReturnMonthlyScheduleForGroup_WhenInvokeMonthlyScheduleForGroup() {
+        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForGroup3033;
+        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForGroup(group3033);
+
+        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+    }
+
+
 }

@@ -14,7 +14,7 @@ public class Department {
             if (teacher.getEmployeeId() == employeeId)
                 return teacher;
         }
-        return new Teacher();
+        return Teacher.EMPTY_TEACHER;
     }
 
     public void addTeacher(Teacher teacher) {

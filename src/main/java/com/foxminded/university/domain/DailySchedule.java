@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class DailySchedule {
+    public static final DailySchedule EMPTY_DAILYSCHEDULE = new DailySchedule();
     private List<Lesson> lessons = new ArrayList<>();
     private LocalDate date;
 

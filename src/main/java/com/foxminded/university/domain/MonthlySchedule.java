@@ -3,7 +3,6 @@ package com.foxminded.university.domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MonthlySchedule {
     private List<DailySchedule> dailySchedules = new ArrayList<>();
@@ -23,7 +22,7 @@ public class MonthlySchedule {
             if (dailySchedule.getDate().equals(date))
                 return dailySchedule;
         }
-        return new DailySchedule();
+        return DailySchedule.EMPTY_DAILYSCHEDULE;
     }
 
     public List<DailySchedule> getMonthlyScheduleForTeacher(Teacher teacher) {

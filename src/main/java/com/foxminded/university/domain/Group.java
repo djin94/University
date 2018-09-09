@@ -36,4 +36,13 @@ public class Group {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+
+    public Student getStudentByNumberOfMarkBook(int numberMarkBook) {
+        for (Student student : students) {
+            if (student.getNumberOfMarkBook() == numberMarkBook) {
+                return student;
+            }
+        }
+        return Student.EMPTY_STUDENT;
+    }
 }
