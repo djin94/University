@@ -26,6 +26,13 @@ public class MonthlyScheduleTest {
     private List<DailySchedule> monthlyScheduleForHolopov;
     private List<DailySchedule> monthlyScheduleForKabatov;
     private List<DailySchedule> monthlyScheduleForGroup3033;
+    private Teacher anikeevTeacher;
+    private List<DailySchedule> monthlyScheduleForAnikeev;
+    private Student ivanovStudent;
+    private List<DailySchedule> monthlyScheduleForIvanov;
+    private Group group2070;
+    private List<DailySchedule> monthlyScheduleForGroup2070;
+    private DailySchedule emptyDailySchedule;
 
     @Before
     public void setUp() {
@@ -93,6 +100,31 @@ public class MonthlyScheduleTest {
 
         monthlyScheduleForGroup3033 = new ArrayList<>();
         monthlyScheduleForGroup3033.add(sep10DailySchedule);
+
+        anikeevTeacher = new Teacher();
+        anikeevTeacher.setFirstName("Sergey");
+        anikeevTeacher.setPatronym("Vladimirovich");
+        anikeevTeacher.setLastName("Anikeev");
+
+        emptyDailySchedule = new DailySchedule();
+        emptyDailySchedule.setDate(LocalDate.of(2018, 9, 10));
+
+        monthlyScheduleForAnikeev = new ArrayList<>();
+        monthlyScheduleForAnikeev.add(emptyDailySchedule);
+
+        ivanovStudent = new Student();
+        ivanovStudent.setFirstName("Ivan");
+        ivanovStudent.setPatronym("Ivanovich");
+        ivanovStudent.setLastName("Ivanov");
+
+        monthlyScheduleForIvanov = new ArrayList<>();
+        monthlyScheduleForIvanov.add(emptyDailySchedule);
+
+        group2070 = new Group();
+        group2070.setName("2070");
+
+        monthlyScheduleForGroup2070 = new ArrayList<>();
+        monthlyScheduleForGroup2070.add(emptyDailySchedule);
     }
 
     @Test
@@ -119,5 +151,27 @@ public class MonthlyScheduleTest {
         assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
     }
 
+    @Test
+    public void shouldReturnEmptyMonthlyScheduleForTeacher_WhenNotLessonsForTeacher() {
+        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForAnikeev;
+        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForTeacher(anikeevTeacher);
 
+        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+    }
+
+    @Test
+    public void shouldReturnEmptyMonthlyScheduleForStudent_WhenNotLessonsForStudent(){
+        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForIvanov;
+        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForStudent(ivanovStudent);
+
+        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+    }
+
+    @Test
+    public void shouldReturnEmptyMonthlyScheduleForGroup_WhenNotLessonsForGroup(){
+        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForGroup2070;
+        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForGroup(group2070);
+
+        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+    }
 }
