@@ -44,6 +44,7 @@ public class MonthlyScheduleTest {
         holopovTeacher.setFirstName("Sergey");
         holopovTeacher.setPatronym("Ivanovich");
         holopovTeacher.setLastName("Holopov");
+        holopovTeacher.setEmployeeId(7852);
         holopovTeacher.addSubject(plisSubject);
 
         kabatovStudent = new Student();
@@ -173,5 +174,21 @@ public class MonthlyScheduleTest {
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForGroup(group2070);
 
         assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+    }
+
+    @Test
+    public void shouldReturnDailySchedule_WhenInvokeDailyScheduleByDate(){
+        DailySchedule expectedDailySchedule = sep10DailySchedule;
+        DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 10));
+
+        assertEquals(expectedDailySchedule,actualDailySchedule);
+    }
+
+    @Test
+    public void shouldReturnEmptyDailySchedule_WhenNotDailyScheduleForDate(){
+        DailySchedule expectedDailySchedule =DailySchedule.EMPTY_DAILYSCHEDULE;
+        DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 11));
+
+        assertEquals(expectedDailySchedule,actualDailySchedule);
     }
 }
