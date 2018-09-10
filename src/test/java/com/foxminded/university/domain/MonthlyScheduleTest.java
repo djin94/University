@@ -161,7 +161,7 @@ public class MonthlyScheduleTest {
     }
 
     @Test
-    public void shouldReturnEmptyMonthlyScheduleForStudent_WhenNotLessonsForStudent(){
+    public void shouldReturnEmptyMonthlyScheduleForStudent_WhenNotLessonsForStudent() {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForIvanov;
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForStudent(ivanovStudent);
 
@@ -169,7 +169,7 @@ public class MonthlyScheduleTest {
     }
 
     @Test
-    public void shouldReturnEmptyMonthlyScheduleForGroup_WhenNotLessonsForGroup(){
+    public void shouldReturnEmptyMonthlyScheduleForGroup_WhenNotLessonsForGroup() {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForGroup2070;
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForGroup(group2070);
 
@@ -177,18 +177,18 @@ public class MonthlyScheduleTest {
     }
 
     @Test
-    public void shouldReturnDailySchedule_WhenInvokeDailyScheduleByDate(){
+    public void shouldReturnDailySchedule_WhenInvokeDailyScheduleByDate() {
         DailySchedule expectedDailySchedule = sep10DailySchedule;
         DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 10));
 
-        assertEquals(expectedDailySchedule,actualDailySchedule);
+        assertEquals(expectedDailySchedule, actualDailySchedule);
     }
 
     @Test
-    public void shouldReturnEmptyDailySchedule_WhenNotDailyScheduleForDate(){
-        DailySchedule expectedDailySchedule =DailySchedule.EMPTY_DAILYSCHEDULE;
+    public void shouldReturnEmptyDailySchedule_WhenNotDailyScheduleForDate() {
+        DailySchedule expectedDailySchedule = DailySchedule.EMPTY_DAILYSCHEDULE;
         DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 11));
 
-        assertEquals(expectedDailySchedule,actualDailySchedule);
+        assertEquals(expectedDailySchedule, actualDailySchedule);
     }
 }
