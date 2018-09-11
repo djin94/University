@@ -119,7 +119,6 @@ public class MonthlySchedule {
     public int hashCode() {
         int result = dailySchedules != null ? dailySchedules.hashCode() : 0;
         result = 31 * result + month;
-        result = 31 * result + year;
-        return result;
+        return 31 * result + year;
     }
 }

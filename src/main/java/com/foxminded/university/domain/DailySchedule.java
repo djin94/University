@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class DailySchedule {
     public static final DailySchedule EMPTY_DAILYSCHEDULE = new DailySchedule();
@@ -24,30 +25,25 @@ public class DailySchedule {
     }
 
     public List<Lesson> getDailyScheduleForTeacher(Teacher teacher) {
-        List<Lesson> lessonsForTeacher = new ArrayList<>();
-        for (Lesson lesson : lessons) {
-            if (lesson.getTeacher() == teacher)
-                lessonsForTeacher.add(lesson);
-        }
+        List<Lesson> lessonsForTeacher = lessons.stream()
+                .filter(lesson -> lesson.getTeacher().equals(teacher))
+                .collect(Collectors.toList());
         return lessonsForTeacher;
     }
 
     public List<Lesson> getDailyScheduleForStudent(Student student) {
-        List<Lesson> lessonsForStudent = new ArrayList<>();
-        for (Lesson lesson : lessons) {
-
-            if (lesson.getGroup().getStudents().contains(student))
-                lessonsForStudent.add(lesson);
-        }
+        List<Lesson> lessonsForStudent = lessons.stream()
+                .filter(lesson -> lesson.getGroup().getStudents()
+                        .stream()
+                        .anyMatch(studentInGroup -> studentInGroup.equals(student)))
+                .collect(Collectors.toList());
         return lessonsForStudent;
     }
 
     public List<Lesson> getDailyScheduleForGroup(Group group) {
-        List<Lesson> lessonsForGroup = new ArrayList<>();
-        for (Lesson lesson : lessons) {
-            if (lesson.getGroup() == group)
-                lessonsForGroup.add(lesson);
-        }
+        List<Lesson> lessonsForGroup = lessons.stream()
+                .filter(lesson -> lesson.getGroup().equals(group))
+                .collect(Collectors.toList());
         return lessonsForGroup;
     }
 

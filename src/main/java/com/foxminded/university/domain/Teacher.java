@@ -50,8 +50,6 @@ public class Teacher extends Person {
 
     @Override
     public int hashCode() {
-        int result = employeeId;
-        result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
-        return result;
+        return 31 * employeeId + (subjects != null ? subjects.hashCode() : 0);
     }
 }

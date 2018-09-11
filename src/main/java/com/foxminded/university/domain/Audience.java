@@ -48,8 +48,6 @@ public class Audience {
 
     @Override
     public int hashCode() {
-        int result = number;
-        result = 31 * result + building;
-        return result;
+        return 31 * number + building;
     }
 }

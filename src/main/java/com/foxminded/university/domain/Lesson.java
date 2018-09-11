@@ -77,7 +77,6 @@ public class Lesson {
         result = 31 * result + (teacher != null ? teacher.hashCode() : 0);
         result = 31 * result + (group != null ? group.hashCode() : 0);
         result = 31 * result + (audience != null ? audience.hashCode() : 0);
-        result = 31 * result + (timeStart != null ? timeStart.hashCode() : 0);
-        return result;
+        return 31 * result + (timeStart != null ? timeStart.hashCode() : 0);
     }
 }
