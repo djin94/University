@@ -37,4 +37,21 @@ public class Teacher extends Person {
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (!(o instanceof Teacher)) {
+            return false;
+        }
+        Teacher teacher = (Teacher) o;
+        return employeeId == teacher.employeeId;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = employeeId;
+        result = 31 * result + (subjects != null ? subjects.hashCode() : 0);
+        return result;
+    }
 }

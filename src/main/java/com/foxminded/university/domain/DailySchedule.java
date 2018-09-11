@@ -35,6 +35,7 @@ public class DailySchedule {
     public List<Lesson> getDailyScheduleForStudent(Student student) {
         List<Lesson> lessonsForStudent = new ArrayList<>();
         for (Lesson lesson : lessons) {
+
             if (lesson.getGroup().getStudents().contains(student))
                 lessonsForStudent.add(lesson);
         }

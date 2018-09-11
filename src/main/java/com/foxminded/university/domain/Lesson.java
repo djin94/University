@@ -56,4 +56,28 @@ public class Lesson {
     public void setTimeStart(LocalTime timeStart) {
         this.timeStart = timeStart;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Teacher)) {
+            return false;
+        }
+        Lesson lesson = (Lesson) o;
+        if (!subject.equals(lesson.subject)) return false;
+        if (!teacher.equals(lesson.teacher)) return false;
+        if (!group.equals(lesson.group)) return false;
+        if (!audience.equals(lesson.audience)) return false;
+        return timeStart.equals(lesson.timeStart);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = subject != null ? subject.hashCode() : 0;
+        result = 31 * result + (teacher != null ? teacher.hashCode() : 0);
+        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (audience != null ? audience.hashCode() : 0);
+        result = 31 * result + (timeStart != null ? timeStart.hashCode() : 0);
+        return result;
+    }
 }

@@ -11,4 +11,19 @@ public class Student extends Person {
     public void setNumberOfMarkBook(int numberOfMarkBook) {
         this.numberOfMarkBook = numberOfMarkBook;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) {
+            return false;
+        }
+        Student student = (Student) o;
+        return numberOfMarkBook == student.numberOfMarkBook;
+    }
+
+    @Override
+    public int hashCode() {
+        return numberOfMarkBook;
+    }
 }

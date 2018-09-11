@@ -34,4 +34,22 @@ public class Audience {
         this.building = audience.building;
         this.type = audience.type;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Audience)) {
+            return false;
+        }
+        Audience audience = (Audience) o;
+        if (number != audience.number) return false;
+        return building == audience.building;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = number;
+        result = 31 * result + building;
+        return result;
+    }
 }

@@ -24,4 +24,19 @@ public class Subject {
     public void setHoursInSemestr(int hoursInSemestr) {
         this.hoursInSemestr = hoursInSemestr;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subject)) {
+            return false;
+        }
+        Subject subject = (Subject) o;
+        return name.equals(subject.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
 }

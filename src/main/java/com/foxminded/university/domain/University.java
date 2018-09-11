@@ -36,4 +36,21 @@ public class University {
     public void setFaculties(List<Faculty> faculties) {
         this.faculties = faculties;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof University)) {
+            return false;
+        }
+
+        University that = (University) o;
+
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
 }

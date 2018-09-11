@@ -55,4 +55,19 @@ public class Faculty {
     public void setAudiences(List<Audience> audiences) {
         this.audiences = audiences;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Faculty)) {
+            return false;
+        }
+        Faculty faculty = (Faculty) o;
+        return name != null ? name.equals(faculty.name) : faculty.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
 }
