@@ -4,23 +4,54 @@ import com.foxminded.university.domain.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        boolean stop = false;
+        Scanner scanner = new Scanner(System.in);
         Main main = new Main();
-        University university = main.getUniversity();
-    }
+        University university = main.getRsreuUniversity();
+        MonthlySchedule monthlyScheduleForUniversity = main.getMonthlySchedyle();
+        System.out.println("Hello! Whose schedule do you want to see?");
+        do {
+            try {
+                String lastName="";
+                String firstName="";
+                String patronym="";
+                System.out.println("Choose and write: 1 - Teacher, 2 - Student, 3 - Group");
+                int choiceForWho = scanner.nextInt();
+                System.out.println("Choose type schedule: 1 - For month, 2 - For day");
+                int choiceTypeSchedule = scanner.nextInt();
+                if (choiceForWho == 1 || choiceForWho == 2) {
+                    System.out.println("Enter a last name");
+                    lastName = scanner.nextLine();
+                    System.out.println("Enter a first name");
+                    firstName = scanner.nextLine();
+                    System.out.println("Enter a patronym");
+                    patronym = scanner.nextLine();
+                }
+                if (choiceForWho == 3) {
+                    System.out.println("Enter a last name");
+                    String name = scanner.nextLine();
+                }
 
-    private University getUniversity() {
-        University university= getRsreuUniversity();
-        Faculty faituFaculty= getFaituFaculty();
-        Audience audience313=getAudience313();
-        Department asuDepartment= getAsuDepartment();
-        Group group3033= getGroup3033();
-        Student kabatovStudent= getKabatovStudent();
-        Teacher holopovTeacher= getHolopovTeacher();
-        Subject plisSubject = getPlisSubject();
-        return university;
+                List<DailySchedule> monthlyScheduleForUser;
+                if (choiceTypeSchedule == 1) {
+                    if (choiceForWho == 1) {
+                        Teacher teacher = university.getFaculties().stream()
+                                .filter(departments -> departments.getDepartments().stream()
+                                        .filter(teachersFromDepartment->teachersFromDepartment.getTeachers().stream()
+                                        .filter(teacherFromDepartment -> teacherFromDepartment.getLastName().equals(lastName)&&
+                                        teacherFromDepartment.getFirstName().equals(firstName)&&
+                                        )))
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("");
+            }
+        } while (!stop);
     }
 
     private University getRsreuUniversity() {
@@ -96,10 +127,9 @@ public class Main {
         return plisSubject;
     }
 
-    private MonthlySchedule getMonthlySchedyle(University university) {
+    private MonthlySchedule getMonthlySchedyle() {
         Lesson plisLesson = getPlisLesson();
-        DailySchedule sep10DailySchedule= getSeptember10DailySchedule();
-
+        DailySchedule sep10DailySchedule = getSeptember10DailySchedule();
         MonthlySchedule monthlyScheduleForUniversity = new MonthlySchedule();
         monthlyScheduleForUniversity.setMonth(9);
         monthlyScheduleForUniversity.setYear(2018);

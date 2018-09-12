@@ -107,9 +107,7 @@ public class MonthlySchedule {
         if (!(o instanceof MonthlySchedule)) {
             return false;
         }
-
         MonthlySchedule that = (MonthlySchedule) o;
-
         if (month != that.month) return false;
         if (year != that.year) return false;
         return dailySchedules.equals(that.dailySchedules);
