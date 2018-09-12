@@ -33,8 +33,7 @@ public class DailySchedule {
 
     public List<Lesson> getDailyScheduleForStudent(Student student) {
         List<Lesson> lessonsForStudent = lessons.stream()
-                .filter(lesson -> lesson.getGroup().getStudents()
-                        .stream()
+                .filter(lesson -> lesson.getGroup().getStudents().stream()
                         .anyMatch(studentInGroup -> studentInGroup.equals(student)))
                 .collect(Collectors.toList());
         return lessonsForStudent;

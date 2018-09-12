@@ -4,6 +4,7 @@ import com.foxminded.university.domain.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,40 +15,74 @@ public class Main {
         Main main = new Main();
         University university = main.getRsreuUniversity();
         MonthlySchedule monthlyScheduleForUniversity = main.getMonthlySchedyle();
+        UniversityController universityController = new UniversityController();
+        universityController.setUniversity(university);
+        MonthlyScheduleController monthlyScheduleController = new MonthlyScheduleController();
+        monthlyScheduleController.setMonthlySchedule(monthlyScheduleForUniversity);
         System.out.println("Hello! Whose schedule do you want to see?");
         do {
             try {
-                String lastName="";
-                String firstName="";
-                String patronym="";
+                String lastName = "";
+                String firstName = "";
+                String patronym = "";
+                String name = "";
                 System.out.println("Choose and write: 1 - Teacher, 2 - Student, 3 - Group");
                 int choiceForWho = scanner.nextInt();
                 System.out.println("Choose type schedule: 1 - For month, 2 - For day");
                 int choiceTypeSchedule = scanner.nextInt();
+                int choiceDay = 0;
+                if (choiceTypeSchedule == 2) {
+                    System.out.println("Enter a day");
+                    choiceDay = scanner.nextInt();
+                }
                 if (choiceForWho == 1 || choiceForWho == 2) {
                     System.out.println("Enter a last name");
-                    lastName = scanner.nextLine();
+                    lastName = scanner.next();
                     System.out.println("Enter a first name");
-                    firstName = scanner.nextLine();
+                    firstName = scanner.next();
                     System.out.println("Enter a patronym");
-                    patronym = scanner.nextLine();
+                    patronym = scanner.next();
                 }
                 if (choiceForWho == 3) {
                     System.out.println("Enter a last name");
-                    String name = scanner.nextLine();
+                    name = scanner.next();
                 }
-
-                List<DailySchedule> monthlyScheduleForUser;
+                List<DailySchedule> scheduleForUser = new ArrayList<>();
                 if (choiceTypeSchedule == 1) {
                     if (choiceForWho == 1) {
-                        Teacher teacher = university.getFaculties().stream()
-                                .filter(departments -> departments.getDepartments().stream()
-                                        .filter(teachersFromDepartment->teachersFromDepartment.getTeachers().stream()
-                                        .filter(teacherFromDepartment -> teacherFromDepartment.getLastName().equals(lastName)&&
-                                        teacherFromDepartment.getFirstName().equals(firstName)&&
-                                        )))
+                        Teacher teacher = universityController.getTeacherByName(lastName, firstName, patronym);
+                        scheduleForUser.addAll(monthlyScheduleForUniversity.getMonthlyScheduleForTeacher(teacher));
+                    }
+                    if (choiceForWho == 2) {
+                        Student student = universityController.getStudentByName(lastName, firstName, patronym);
+                        scheduleForUser.addAll(monthlyScheduleForUniversity.getMonthlyScheduleForStudent(student));
+                    }
+                    if (choiceForWho == 3) {
+                        Group group = universityController.getGroupByName(name);
+                        scheduleForUser.addAll(monthlyScheduleForUniversity.getMonthlyScheduleForGroup(group));
                     }
                 }
+                if (choiceTypeSchedule == 2) {
+                    if (choiceForWho == 1) {
+                        Teacher teacher = universityController.getTeacherByName(lastName, firstName, patronym);
+                        scheduleForUser.add(monthlyScheduleController.getDailyScheduleForTeacher(teacher, choiceDay));
+                    }
+                    if (choiceForWho == 2) {
+                        Student student = universityController.getStudentByName(lastName, firstName, patronym);
+                        scheduleForUser.add(monthlyScheduleController.getDailyScheduleForStudent(student, choiceDay));
+                    }
+                    if (choiceForWho == 3) {
+                        Group group = universityController.getGroupByName(name);
+                        scheduleForUser.add(monthlyScheduleController.getDailyScheduleForGroup(group, choiceDay));
+                    }
+                }
+                scheduleForUser.stream().flatMap(dailySchedule -> dailySchedule.getLessons().stream())
+                        .peek(lesson -> lesson.getTimeStart().toString())
+                        .peek(lesson -> lesson.getSubject().getName())
+                        .peek(lesson -> lesson.getGroup().getName())
+                        .peek(lesson -> lesson.getTeacher().getLastName())
+                        .peek(lesson -> lesson.getAudience().getNumber())
+                        .forEach(System.out::println);
             } catch (Exception e) {
                 System.out.println("");
             }
