@@ -90,7 +90,7 @@ public class UniversityModel {
         return poisSubject;
     }
 
-    private MonthlySchedule getMonthlySchedyle() {
+    public MonthlySchedule getMonthlySchedyle() {
         Lesson plisLesson = getPlisLesson();
         DailySchedule sep10DailySchedule = getSeptember10DailySchedule();
         MonthlySchedule monthlyScheduleForUniversity = new MonthlySchedule();
