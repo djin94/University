@@ -44,7 +44,7 @@ public class Main {
                     patronym = scanner.next();
                 }
                 if (choiceForWho == 3) {
-                    System.out.println("Enter a last name");
+                    System.out.println("Enter a name");
                     name = scanner.next();
                 }
                 List<DailySchedule> scheduleForUser = new ArrayList<>();
@@ -76,17 +76,32 @@ public class Main {
                         scheduleForUser.add(monthlyScheduleController.getDailyScheduleForGroup(group, choiceDay));
                     }
                 }
-                scheduleForUser.stream().flatMap(dailySchedule -> dailySchedule.getLessons().stream())
-                        .peek(lesson -> lesson.getTimeStart().toString())
-                        .peek(lesson -> lesson.getSubject().getName())
-                        .peek(lesson -> lesson.getGroup().getName())
-                        .peek(lesson -> lesson.getTeacher().getLastName())
-                        .peek(lesson -> lesson.getAudience().getNumber())
-                        .forEach(System.out::println);
+                main.printSchedule(scheduleForUser);
+                System.out.println("Do you want to continue? (y/n)");
+                stop = !scanner.next().equals("y");
             } catch (Exception e) {
                 System.out.println("");
             }
         } while (!stop);
+    }
+
+    private void printSchedule(List<DailySchedule> dailySchedules) {
+        dailySchedules.stream().flatMap(dailySchedule -> dailySchedule.getLessons().stream())
+                .peek(lesson -> {
+                    System.out.println("Time: " + lesson.getTimeStart().toString());
+                })
+                .peek(lesson -> {
+                    System.out.println("Subject: " + lesson.getSubject().getName());
+                })
+                .peek(lesson -> {
+                    System.out.println("Group: " + lesson.getGroup().getName());
+                })
+                .peek(lesson -> {
+                    System.out.println("Teacher: " + lesson.getTeacher().getLastName());
+                })
+                .forEach(lesson -> {
+                    System.out.println("Audience: " + lesson.getAudience().getNumber()+"\n");
+    });
     }
 
     private University getRsreuUniversity() {
@@ -162,6 +177,13 @@ public class Main {
         return plisSubject;
     }
 
+    private Subject getPoisSubject(){
+        Subject poisSubject = new Subject();
+        poisSubject.setName("POIS");
+        poisSubject.setHoursInSemestr(116);
+        return poisSubject;
+    }
+
     private MonthlySchedule getMonthlySchedyle() {
         Lesson plisLesson = getPlisLesson();
         DailySchedule sep10DailySchedule = getSeptember10DailySchedule();
@@ -178,6 +200,7 @@ public class Main {
         sep10DailySchedule = new DailySchedule();
         sep10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
         sep10DailySchedule.addLesson(plisLesson);
+        sep10DailySchedule.addLesson(getPoisLesson());
         return sep10DailySchedule;
     }
 
@@ -189,5 +212,15 @@ public class Main {
         plisLesson.setAudience(getAudience313());
         plisLesson.setTimeStart(LocalTime.of(9, 55));
         return plisLesson;
+    }
+
+    private Lesson getPoisLesson(){
+        Lesson poisLesson = new Lesson();
+        poisLesson.setSubject(getPoisSubject());
+        poisLesson.setGroup(getGroup3033());
+        poisLesson.setTeacher(getHolopovTeacher());
+        poisLesson.setAudience(getAudience313());
+        poisLesson.setTimeStart(LocalTime.of(11, 40));
+        return poisLesson;
     }
 }
