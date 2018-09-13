@@ -5,9 +5,6 @@ import com.foxminded.university.domain.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * Created by Кабатов on 13.09.2018.
- */
 public class UniversityModel {
 
     public University getRsreuUniversity() {
