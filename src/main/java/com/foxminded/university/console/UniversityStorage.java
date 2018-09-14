@@ -24,11 +24,11 @@ public class UniversityStorage {
         return universityStorage;
     }
 
-    public University getRsreuUniversity(){
+    public University getRsreuUniversity() {
         return university;
     }
 
-    public MonthlySchedule getMonthlyScheduleForSeptember(){
+    public MonthlySchedule getMonthlyScheduleForSeptember() {
         return monthlyScheduleForSeptember;
     }
 
