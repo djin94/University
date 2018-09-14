@@ -70,4 +70,13 @@ public class Faculty {
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        String listDepartments = "";
+        for (int i = 0; i < departments.size(); i++) {
+            listDepartments += String.valueOf(i) + " - " + departments.get(i) + "\n";
+        }
+        return listDepartments;
+    }
 }

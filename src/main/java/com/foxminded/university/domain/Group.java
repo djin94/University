@@ -60,4 +60,13 @@ public class Group {
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        String listStudents = "";
+        for (int i = 0; i < students.size(); i++) {
+            listStudents += String.valueOf(i) + " - " + students.get(i) + "\n";
+        }
+        return listStudents;
+    }
 }

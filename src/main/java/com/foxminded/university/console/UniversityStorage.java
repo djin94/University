@@ -177,12 +177,12 @@ public class UniversityStorage {
 
     private List<Lesson> createSeptember10Lessons() {
         List<Lesson> lessons = new ArrayList<>();
-        lessons.add(createPlisLesson());
-        lessons.add(createPoisLesson());
+        lessons.add(createPlisLessonForGroup3033AndForHolopov());
+        lessons.add(createPoisLessonForGroup3033AndForHolopov());
         return lessons;
     }
 
-    private Lesson createPlisLesson() {
+    private Lesson createPlisLessonForGroup3033AndForHolopov() {
         Lesson plisLesson = new Lesson();
         plisLesson.setSubject(createPlisSubject());
         plisLesson.setGroup(createGroup3033());
@@ -192,7 +192,7 @@ public class UniversityStorage {
         return plisLesson;
     }
 
-    private Lesson createPoisLesson() {
+    private Lesson createPoisLessonForGroup3033AndForHolopov() {
         Lesson poisLesson = new Lesson();
         poisLesson.setSubject(createPoisSubject());
         poisLesson.setGroup(createGroup3033());
@@ -201,4 +201,6 @@ public class UniversityStorage {
         poisLesson.setTimeStart(LocalTime.of(11, 40));
         return poisLesson;
     }
+
+
 }

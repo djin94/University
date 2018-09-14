@@ -53,4 +53,13 @@ public class University {
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        String listFaculties = "";
+        for (int i = 0; i < faculties.size(); i++) {
+            listFaculties += String.valueOf(i) + " - " + faculties.get(i) + "\n";
+        }
+        return listFaculties;
+    }
 }
