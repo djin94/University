@@ -8,41 +8,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UniversityStorage {
-    private UniversityStorage universityStorage;
+    private static UniversityStorage universityStorage;
     private University university;
     private MonthlySchedule monthlyScheduleForSeptember;
 
     private UniversityStorage() {
     }
 
-    public UniversityStorage getInstance() {
+    public static UniversityStorage getInstance() {
         if (universityStorage == null) {
             universityStorage = new UniversityStorage();
-            universityStorage.createRsreuUniversity();
-            universityStorage.createMonthlyScheduleForSeptember();
+            universityStorage.university = universityStorage.createRsreuUniversity();
+            universityStorage.monthlyScheduleForSeptember = universityStorage.createMonthlyScheduleForSeptember();
         }
         return universityStorage;
     }
 
-    private University createRsreuUniversity() {
-        university = new University();
-        university.setName("RSREU");
-        university.setFaculties(createFaculties());
+    public University getRsreuUniversity(){
         return university;
     }
 
-    private List<Faculty> createFaculties() {
+    public MonthlySchedule getMonthlyScheduleForSeptember(){
+        return monthlyScheduleForSeptember;
+    }
+
+    private University createRsreuUniversity() {
+        University university = new University();
+        university.setName("RSREU");
+        university.setFaculties(createRsreuFaculties());
+        return university;
+    }
+
+    private List<Faculty> createRsreuFaculties() {
         List<Faculty> faculties = new ArrayList<>();
         faculties.add(createFaituFaculty());
         return faculties;
     }
 
     private Faculty createFaituFaculty() {
-        Faculty faituFaculty = new Faculty();
-        faituFaculty.setName("FAITU");
-        faituFaculty.setAudiences(createFaituAudiences());
-        faituFaculty.setDepartments(createFaituDepartments());
-        return faituFaculty;
+        Faculty faculty = new Faculty();
+        faculty.setName("FAITU");
+        faculty.setAudiences(createFaituAudiences());
+        faculty.setDepartments(createFaituDepartments());
+        return faculty;
     }
 
     private List<Audience> createFaituAudiences() {
@@ -52,11 +60,11 @@ public class UniversityStorage {
     }
 
     private Audience createAudience313() {
-        Audience audience313 = new Audience();
-        audience313.setNumber(313);
-        audience313.setBuilding(1);
-        audience313.setType("Laboratory");
-        return audience313;
+        Audience audience = new Audience();
+        audience.setNumber(313);
+        audience.setBuilding(1);
+        audience.setType("Laboratory");
+        return audience;
     }
 
     private List<Department> createFaituDepartments() {
@@ -66,12 +74,12 @@ public class UniversityStorage {
     }
 
     private Department createAsuDepartment() {
-        Department asuDepartment = new Department();
-        asuDepartment.setName("ASU");
-        asuDepartment.setGroups(createAsuGroups());
-        asuDepartment.setTeachers(createAsuTeachers());
-        asuDepartment.setSubjects(createAsuSubjects());
-        return asuDepartment;
+        Department department = new Department();
+        department.setName("ASU");
+        department.setGroups(createAsuGroups());
+        department.setTeachers(createAsuTeachers());
+        department.setSubjects(createAsuSubjects());
+        return department;
     }
 
     private List<Group> createAsuGroups() {
@@ -81,10 +89,10 @@ public class UniversityStorage {
     }
 
     private Group createGroup3033() {
-        Group group3033 = new Group();
-        group3033.setName("3033");
-        group3033.setStudents(createGroup3033Students());
-        return group3033;
+        Group group = new Group();
+        group.setName("3033");
+        group.setStudents(createGroup3033Students());
+        return group;
     }
 
     private List<Student> createGroup3033Students() {
@@ -94,12 +102,12 @@ public class UniversityStorage {
     }
 
     private Student createKabatovStudent() {
-        Student kabatovStudent = new Student();
-        kabatovStudent.setFirstName("Evgeny");
-        kabatovStudent.setPatronym("Nikolaevich");
-        kabatovStudent.setLastName("Kabatov");
-        kabatovStudent.setNumberOfMarkBook(230110);
-        return kabatovStudent;
+        Student student = new Student();
+        student.setFirstName("Evgeny");
+        student.setPatronym("Nikolaevich");
+        student.setLastName("Kabatov");
+        student.setNumberOfMarkBook(230110);
+        return student;
     }
 
     private List<Teacher> createAsuTeachers() {
@@ -109,16 +117,16 @@ public class UniversityStorage {
     }
 
     private Teacher createHolopovTeacher() {
-        Teacher holopovTeacher = new Teacher();
-        holopovTeacher.setFirstName("Sergey");
-        holopovTeacher.setPatronym("Ivanovich");
-        holopovTeacher.setLastName("Holopov");
-        holopovTeacher.setEmployeeId(7852);
-        holopovTeacher.setSubjects(createHolopovSubjects());
-        return holopovTeacher;
+        Teacher teacher = new Teacher();
+        teacher.setFirstName("Sergey");
+        teacher.setPatronym("Ivanovich");
+        teacher.setLastName("Holopov");
+        teacher.setEmployeeId(7852);
+        teacher.setSubjects(createHolopovSubjects());
+        return teacher;
     }
 
-    private List<Subject> createHolopovSubjects(){
+    private List<Subject> createHolopovSubjects() {
         List<Subject> subjects = new ArrayList<>();
         subjects.add(createPlisSubject());
         subjects.add(createPoisSubject());
@@ -126,20 +134,20 @@ public class UniversityStorage {
     }
 
     private Subject createPlisSubject() {
-        Subject plisSubject = new Subject();
-        plisSubject.setName("PLIS");
-        plisSubject.setHoursInSemestr(120);
-        return plisSubject;
+        Subject subject = new Subject();
+        subject.setName("PLIS");
+        subject.setHoursInSemestr(120);
+        return subject;
     }
 
     private Subject createPoisSubject() {
-        Subject poisSubject = new Subject();
-        poisSubject.setName("POIS");
-        poisSubject.setHoursInSemestr(116);
-        return poisSubject;
+        Subject subject = new Subject();
+        subject.setName("POIS");
+        subject.setHoursInSemestr(116);
+        return subject;
     }
 
-    private List<Subject> createAsuSubjects(){
+    private List<Subject> createAsuSubjects() {
         List<Subject> subjects = new ArrayList<>();
         subjects.add(createPlisSubject());
         subjects.add(createPoisSubject());
@@ -147,27 +155,27 @@ public class UniversityStorage {
     }
 
     private MonthlySchedule createMonthlyScheduleForSeptember() {
-        MonthlySchedule monthlyScheduleForUniversity = new MonthlySchedule();
-        monthlyScheduleForUniversity.setMonth(9);
-        monthlyScheduleForUniversity.setYear(2018);
-        monthlyScheduleForUniversity.setDailySchedules(createSeptemberDailySchedules());
-        return monthlyScheduleForUniversity;
+        MonthlySchedule monthlySchedule = new MonthlySchedule();
+        monthlySchedule.setMonth(9);
+        monthlySchedule.setYear(2018);
+        monthlySchedule.setDailySchedules(createSeptemberDailySchedules());
+        return monthlySchedule;
     }
 
-    private List<DailySchedule> createSeptemberDailySchedules(){
+    private List<DailySchedule> createSeptemberDailySchedules() {
         List<DailySchedule> dailySchedules = new ArrayList<>();
         dailySchedules.add(createSeptember10DailySchedule());
         return dailySchedules;
     }
 
     private DailySchedule createSeptember10DailySchedule() {
-        DailySchedule sep10DailySchedule= new DailySchedule();
+        DailySchedule sep10DailySchedule = new DailySchedule();
         sep10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
         sep10DailySchedule.setLessons(createSeptember10Lessons());
         return sep10DailySchedule;
     }
 
-    private List<Lesson> createSeptember10Lessons(){
+    private List<Lesson> createSeptember10Lessons() {
         List<Lesson> lessons = new ArrayList<>();
         lessons.add(createPlisLesson());
         lessons.add(createPoisLesson());
