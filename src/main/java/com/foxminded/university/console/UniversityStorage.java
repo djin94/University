@@ -202,5 +202,44 @@ public class UniversityStorage {
         return poisLesson;
     }
 
+    public Teacher getTeacherByName(String lastName, String firstName, String patronym) {
+        return university.getFaculties().stream()
+                .flatMap(faculty -> faculty.getDepartments().stream())
+                .flatMap(department -> department.getTeachers().stream())
+                .filter(teacher -> teacher.getLastName().equals(lastName) &&
+                        teacher.getFirstName().equals(firstName) &&
+                        teacher.getPatronym().equals(patronym)).findFirst().get();
+    }
 
+    public Student getStudentByName(String lastName, String firstName, String patronym) {
+        return university.getFaculties().stream()
+                .flatMap(faculty -> faculty.getDepartments().stream())
+                .flatMap(department -> department.getGroups().stream())
+                .flatMap(group -> group.getStudents().stream())
+                .filter(student -> student.getLastName().equals(lastName) &&
+                        student.getFirstName().equals(firstName) &&
+                        student.getPatronym().equals(patronym)).findFirst().get();
+    }
+
+    public Group getGroupByName(String name) {
+        return university.getFaculties().stream()
+                .flatMap(faculty -> faculty.getDepartments().stream())
+                .flatMap(department -> department.getGroups().stream())
+                .filter(group -> group.getName().equals(name)).findFirst().get();
+    }
+
+    public DailySchedule getDailyScheduleForTeacher(Teacher teacher, int day) {
+        return monthlyScheduleForSeptember.getMonthlyScheduleForTeacher(teacher).stream()
+                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day).findFirst().get();
+    }
+
+    public DailySchedule getDailyScheduleForStudent(Student student, int day) {
+        return monthlyScheduleForSeptember.getMonthlyScheduleForStudent(student).stream()
+                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day).findFirst().get();
+    }
+
+    public DailySchedule getDailyScheduleForGroup(Group group, int day) {
+        return monthlyScheduleForSeptember.getMonthlyScheduleForGroup(group).stream()
+                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day).findFirst().get();
+    }
 }

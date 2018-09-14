@@ -12,13 +12,10 @@ public class Main {
         boolean stop = false;
         Scanner scanner = new Scanner(System.in);
         Main main = new Main();
-        UniversityStorage universityStorage = UniversityStorage.getInstance();
-        University university = universityStorage.getRsreuUniversity();
-        MonthlySchedule monthlyScheduleForUniversity = universityStorage.getMonthlyScheduleForSeptember();
         System.out.println("Hello! Whose and what schedule do you want to see?");
         do {
             try {
-                List<DailySchedule> scheduleForUser = main.getScheduleForUser(university, monthlyScheduleForUniversity);
+                List<DailySchedule> scheduleForUser = main.getScheduleForUser();
                 main.printSchedule(scheduleForUser);
                 System.out.println("Do you want to continue? (y/n)");
                 stop = !scanner.next().equals("y");
@@ -28,14 +25,14 @@ public class Main {
         } while (!stop);
     }
 
-    private List<DailySchedule> getScheduleForUser(University university, MonthlySchedule monthlySchedule) {
+    private List<DailySchedule> getScheduleForUser() {
         List<DailySchedule> scheduleForUser = new ArrayList<>();
         int choiceTypeSchedule = getChoiceTypeScheduleFromConsole();
         if (choiceTypeSchedule == 1) {
-            scheduleForUser.addAll(getMonthlyScheduleForUser(university, monthlySchedule));
+            scheduleForUser.addAll(getMonthlyScheduleForUser());
         }
         if (choiceTypeSchedule == 2) {
-            scheduleForUser.add(getDailyScheduleForUser(university, monthlySchedule));
+            scheduleForUser.add(getDailyScheduleForUser());
         }
         return scheduleForUser;
     }
@@ -46,19 +43,19 @@ public class Main {
         return scanner.nextInt();
     }
 
-    private List<DailySchedule> getMonthlyScheduleForUser(University university, MonthlySchedule monthlySchedule) {
+    private List<DailySchedule> getMonthlyScheduleForUser() {
         int choiceForWho = getChoiceForWhoScheduleFromConsole();
         if (choiceForWho == 1) {
-            Teacher teacher = getTeacherFromConsole(university);
-            return monthlySchedule.getMonthlyScheduleForTeacher(teacher);
+            Teacher teacher = getTeacherFromConsole();
+            return UniversityStorage.getInstance().getMonthlyScheduleForSeptember().getMonthlyScheduleForTeacher(teacher);
         }
         if (choiceForWho == 2) {
-            Student student = getStudentFromConsole(university);
-            return monthlySchedule.getMonthlyScheduleForStudent(student);
+            Student student = getStudentFromConsole();
+            return UniversityStorage.getInstance().getMonthlyScheduleForSeptember().getMonthlyScheduleForStudent(student);
         }
         if (choiceForWho == 3) {
-            Group group = getGroupFromConsole(university);
-            return monthlySchedule.getMonthlyScheduleForGroup(group);
+            Group group = getGroupFromConsole();
+            return UniversityStorage.getInstance().getMonthlyScheduleForSeptember().getMonthlyScheduleForGroup(group);
         }
         return Collections.emptyList();
     }
@@ -69,11 +66,11 @@ public class Main {
         return scanner.nextInt();
     }
 
-    private Teacher getTeacherFromConsole(University university) {
+    private Teacher getTeacherFromConsole() {
         String lastName = getLastNameFromConsole();
         String firstName = getFirstNameFromConsole();
         String patronym = getPatronymFromConsole();
-        return getTeacherByName(university, lastName, firstName, patronym);
+        return UniversityStorage.getInstance().getTeacherByName(lastName, firstName, patronym);
     }
 
     private String getLastNameFromConsole() {
@@ -94,34 +91,15 @@ public class Main {
         return scanner.next();
     }
 
-    public Teacher getTeacherByName(University university, String lastName, String firstName, String patronym) {
-        return university.getFaculties().stream()
-                .flatMap(faculty -> faculty.getDepartments().stream())
-                .flatMap(department -> department.getTeachers().stream())
-                .filter(teacher -> teacher.getLastName().equals(lastName) &&
-                        teacher.getFirstName().equals(firstName) &&
-                        teacher.getPatronym().equals(patronym)).findFirst().get();
-    }
-
-    private Student getStudentFromConsole(University university) {
+    private Student getStudentFromConsole() {
         String lastName = getLastNameFromConsole();
         String firstName = getFirstNameFromConsole();
         String patronym = getPatronymFromConsole();
-        return getStudentByName(university, lastName, firstName, patronym);
+        return UniversityStorage.getInstance().getStudentByName(lastName, firstName, patronym);
     }
 
-    public Student getStudentByName(University university, String lastName, String firstName, String patronym) {
-        return university.getFaculties().stream()
-                .flatMap(faculty -> faculty.getDepartments().stream())
-                .flatMap(department -> department.getGroups().stream())
-                .flatMap(group -> group.getStudents().stream())
-                .filter(student -> student.getLastName().equals(lastName) &&
-                        student.getFirstName().equals(firstName) &&
-                        student.getPatronym().equals(patronym)).findFirst().get();
-    }
-
-    private Group getGroupFromConsole(University university) {
-        return getGroupByName(university, getNameForGroup());
+    private Group getGroupFromConsole() {
+        return UniversityStorage.getInstance().getGroupByName(getNameForGroup());
     }
 
     private String getNameForGroup() {
@@ -130,27 +108,20 @@ public class Main {
         return scanner.next();
     }
 
-    public Group getGroupByName(University university, String name) {
-        return university.getFaculties().stream()
-                .flatMap(faculty -> faculty.getDepartments().stream())
-                .flatMap(department -> department.getGroups().stream())
-                .filter(group -> group.getName().equals(name)).findFirst().get();
-    }
-
-    private DailySchedule getDailyScheduleForUser(University university, MonthlySchedule monthlySchedule) {
+    private DailySchedule getDailyScheduleForUser() {
         int choiceForWho = getChoiceForWhoScheduleFromConsole();
         int choiceDay = getChoiceDayFromConsole();
         if (choiceForWho == 1) {
-            Teacher teacher = getTeacherFromConsole(university);
-            return getDailyScheduleForTeacher(monthlySchedule, teacher, choiceDay);
+            Teacher teacher = getTeacherFromConsole();
+            return UniversityStorage.getInstance().getDailyScheduleForTeacher(teacher, choiceDay);
         }
         if (choiceForWho == 2) {
-            Student student = getStudentFromConsole(university);
-            return getDailyScheduleForStudent(monthlySchedule, student, choiceDay);
+            Student student = getStudentFromConsole();
+            return UniversityStorage.getInstance().getDailyScheduleForStudent(student, choiceDay);
         }
         if (choiceForWho == 3) {
-            Group group = getGroupFromConsole(university);
-            return getDailyScheduleForGroup(monthlySchedule, group, choiceDay);
+            Group group = getGroupFromConsole();
+            return UniversityStorage.getInstance().getDailyScheduleForGroup(group, choiceDay);
         }
         return DailySchedule.EMPTY_DAILYSCHEDULE;
     }
@@ -161,37 +132,12 @@ public class Main {
         return scanner.nextInt();
     }
 
-    public DailySchedule getDailyScheduleForTeacher(MonthlySchedule monthlySchedule, Teacher teacher, int day) {
-        return monthlySchedule.getMonthlyScheduleForTeacher(teacher).stream()
-                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day).findFirst().get();
-    }
-
-    public DailySchedule getDailyScheduleForStudent(MonthlySchedule monthlySchedule, Student student, int day) {
-        return monthlySchedule.getMonthlyScheduleForStudent(student).stream()
-                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day).findFirst().get();
-    }
-
-    public DailySchedule getDailyScheduleForGroup(MonthlySchedule monthlySchedule, Group group, int day) {
-        return monthlySchedule.getMonthlyScheduleForGroup(group).stream()
-                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day).findFirst().get();
-    }
-
     private void printSchedule(List<DailySchedule> dailySchedules) {
         dailySchedules.stream().flatMap(dailySchedule -> dailySchedule.getLessons().stream())
-                .peek(lesson -> {
-                    System.out.println("Time: " + lesson.getTimeStart().toString());
-                })
-                .peek(lesson -> {
-                    System.out.println("Subject: " + lesson.getSubject().getName());
-                })
-                .peek(lesson -> {
-                    System.out.println("Group: " + lesson.getGroup().getName());
-                })
-                .peek(lesson -> {
-                    System.out.println("Teacher: " + lesson.getTeacher().getLastName());
-                })
-                .forEach(lesson -> {
-                    System.out.println("Audience: " + lesson.getAudience().getNumber() + "u" + lesson.getAudience().getBuilding() + "\n");
-                });
+                .peek(lesson -> System.out.println("Time: " + lesson.getTimeStart().toString()))
+                .peek(lesson -> System.out.println("Subject: " + lesson.getSubject().getName()))
+                .peek(lesson -> System.out.println("Group: " + lesson.getGroup().getName()))
+                .peek(lesson -> System.out.println("Teacher: " + lesson.getTeacher().getLastName()))
+                .forEach(lesson -> System.out.println("Audience: " + lesson.getAudience().getNumber() + "u" + lesson.getAudience().getBuilding() + "\n"));
     }
 }
