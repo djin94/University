@@ -12,9 +12,9 @@ public class Main {
         boolean stop = false;
         Scanner scanner = new Scanner(System.in);
         Main main = new Main();
-        UniversityModel universityModel = new UniversityModel();
-        University university = universityModel.getRsreuUniversity();
-        MonthlySchedule monthlyScheduleForUniversity = universityModel.getMonthlySchedyle();
+        UniversityStorage universityStorage = new UniversityStorage();
+        University university = universityStorage.getRsreuUniversity();
+        MonthlySchedule monthlyScheduleForUniversity = universityStorage.getMonthlySchedyle();
         System.out.println("Hello! Whose and what schedule do you want to see?");
         do {
             try {
