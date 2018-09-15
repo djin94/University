@@ -65,7 +65,7 @@ public class Group {
     public String toString() {
         String listStudents = "";
         for (int i = 0; i < students.size(); i++) {
-            listStudents += String.valueOf(i) + " - " + students.get(i) + "\n";
+            listStudents += String.valueOf(i + 1) + " - " + students.get(i).getLastName() + " " + students.get(i).getFirstName() + " " + students.get(i).getPatronym() + "\n";
         }
         return listStudents;
     }

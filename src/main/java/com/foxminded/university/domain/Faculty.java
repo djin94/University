@@ -75,7 +75,7 @@ public class Faculty {
     public String toString() {
         String listDepartments = "";
         for (int i = 0; i < departments.size(); i++) {
-            listDepartments += String.valueOf(i) + " - " + departments.get(i) + "\n";
+            listDepartments += String.valueOf(i + 1) + " - " + departments.get(i).getName() + "\n";
         }
         return listDepartments;
     }

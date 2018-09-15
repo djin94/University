@@ -58,7 +58,7 @@ public class University {
     public String toString() {
         String listFaculties = "";
         for (int i = 0; i < faculties.size(); i++) {
-            listFaculties += String.valueOf(i) + " - " + faculties.get(i) + "\n";
+            listFaculties += String.valueOf(i + 1) + " - " + faculties.get(i).getName() + "\n";
         }
         return listFaculties;
     }
