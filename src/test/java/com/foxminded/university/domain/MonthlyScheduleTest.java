@@ -14,13 +14,13 @@ public class MonthlyScheduleTest {
     private University university;
     private Faculty faituFaculty;
     private Audience audience313;
-    private Department asuDepartment;
+    private Department acsDepartment;
     private Group group3033;
     private Student kabatovStudent;
     private Teacher holopovTeacher;
-    private Subject plisSubject;
+    private Subject plicSubject;
     private MonthlySchedule monthlyScheduleForUniversity;
-    private Lesson plisLesson;
+    private Lesson plicLesson;
     private DailySchedule sep10DailySchedule;
 
     private List<DailySchedule> monthlyScheduleForHolopov;
@@ -36,16 +36,16 @@ public class MonthlyScheduleTest {
 
     @Before
     public void setUp() {
-        plisSubject = new Subject();
-        plisSubject.setName("PLIS");
-        plisSubject.setHoursInSemestr(120);
+        plicSubject = new Subject();
+        plicSubject.setName("PLIS");
+        plicSubject.setHoursInSemestr(120);
 
         holopovTeacher = new Teacher();
         holopovTeacher.setFirstName("Sergey");
         holopovTeacher.setPatronym("Ivanovich");
         holopovTeacher.setLastName("Holopov");
         holopovTeacher.setEmployeeId(7852);
-        holopovTeacher.addSubject(plisSubject);
+        holopovTeacher.addSubject(plicSubject);
 
         kabatovStudent = new Student();
         kabatovStudent.setFirstName("Evgeny");
@@ -57,11 +57,11 @@ public class MonthlyScheduleTest {
         group3033.setName("3033");
         group3033.addStudent(kabatovStudent);
 
-        asuDepartment = new Department();
-        asuDepartment.setName("ASU");
-        asuDepartment.addGroup(group3033);
-        asuDepartment.addTeacher(holopovTeacher);
-        asuDepartment.addSubject(plisSubject);
+        acsDepartment = new Department();
+        acsDepartment.setName("ASU");
+        acsDepartment.addGroup(group3033);
+        acsDepartment.addTeacher(holopovTeacher);
+        acsDepartment.addSubject(plicSubject);
 
         audience313 = new Audience();
         audience313.setNumber(313);
@@ -71,22 +71,22 @@ public class MonthlyScheduleTest {
         faituFaculty = new Faculty();
         faituFaculty.setName("FAITU");
         faituFaculty.addAudience(audience313);
-        faituFaculty.addDepartment(asuDepartment);
+        faituFaculty.addDepartment(acsDepartment);
 
         university = new University();
         university.setName("RSREU");
         university.addFaculty(faituFaculty);
 
-        plisLesson = new Lesson();
-        plisLesson.setSubject(plisSubject);
-        plisLesson.setGroup(group3033);
-        plisLesson.setTeacher(holopovTeacher);
-        plisLesson.setAudience(audience313);
-        plisLesson.setTimeStart(LocalTime.of(9, 55));
+        plicLesson = new Lesson();
+        plicLesson.setSubject(plicSubject);
+        plicLesson.setGroup(group3033);
+        plicLesson.setTeacher(holopovTeacher);
+        plicLesson.setAudience(audience313);
+        plicLesson.setTimeStart(LocalTime.of(9, 55));
 
         sep10DailySchedule = new DailySchedule();
         sep10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
-        sep10DailySchedule.addLesson(plisLesson);
+        sep10DailySchedule.addLesson(plicLesson);
 
         monthlyScheduleForUniversity = new MonthlySchedule();
         monthlyScheduleForUniversity.setMonth(9);
@@ -126,6 +126,7 @@ public class MonthlyScheduleTest {
 
         monthlyScheduleForGroup2070 = new ArrayList<>();
         monthlyScheduleForGroup2070.add(emptyDailySchedule);
+
     }
 
     @Test
