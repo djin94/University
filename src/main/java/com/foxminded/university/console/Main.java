@@ -21,7 +21,7 @@ public class Main {
                 System.out.println("Enter only the specified numbers");
             } finally {
                 System.out.println("Do you want to continue? (y/n)");
-                stop = !scanner.next().equals("y");
+                stop = scanner.next().equals("n");
             }
         } while (!stop);
     }
@@ -40,7 +40,7 @@ public class Main {
 
     private int getChoiceTypeScheduleFromConsole() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Choose type schedule: 1 - For month, 2 - For day");
+        System.out.println("Choose schedule type: 1 - For month, 2 - For day");
         return scanner.nextInt();
     }
 
