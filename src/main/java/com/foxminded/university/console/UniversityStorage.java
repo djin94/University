@@ -48,7 +48,7 @@ public class UniversityStorage {
 
     private Faculty createFaituFaculty() {
         Faculty faituFaculty = new Faculty();
-        faituFaculty.setName("Faculty of Automation and Information Technologies in Management");
+        faituFaculty.setName("Faculty of Automation and Information Technologies in System Management");
         faituFaculty.setAudiences(createFaituAudiences());
         faituFaculty.setDepartments(createFaituDepartments());
         return faituFaculty;
