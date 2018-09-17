@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UniversityStorage {
     private static UniversityStorage universityStorage;
-    private University rsreuUniversity;
+    private University university;
     private MonthlySchedule monthlyScheduleForSeptember;
 
     private UniversityStorage() {
@@ -18,46 +18,46 @@ public class UniversityStorage {
     public static UniversityStorage getInstance() {
         if (universityStorage == null) {
             universityStorage = new UniversityStorage();
-            universityStorage.rsreuUniversity = universityStorage.createRsreuUniversity();
+            universityStorage.university = universityStorage.createRyazanStateRadioengineeringUniversity();
             universityStorage.monthlyScheduleForSeptember = universityStorage.createSeptemberMonthlySchedule();
         }
         return universityStorage;
     }
 
-    public University getRsreuUniversity() {
-        return rsreuUniversity;
+    public University getUniversity() {
+        return university;
     }
 
     public MonthlySchedule getMonthlyScheduleForSeptember() {
         return monthlyScheduleForSeptember;
     }
 
-    private University createRsreuUniversity() {
-        University rsreuUniversity = new University();
-        rsreuUniversity.setName("Ryazan State Radioengineering University");
-        rsreuUniversity.setFaculties(createRsreuFaculties());
-        return rsreuUniversity;
+    private University createRyazanStateRadioengineeringUniversity() {
+        University ryazanStateRadioengineeringUniversity = new University();
+        ryazanStateRadioengineeringUniversity.setName("Ryazan State Radioengineering University");
+        ryazanStateRadioengineeringUniversity.setFaculties(createRyazanStateRadioengineeringUniversityFaculties());
+        return ryazanStateRadioengineeringUniversity;
     }
 
-    private List<Faculty> createRsreuFaculties() {
+    private List<Faculty> createRyazanStateRadioengineeringUniversityFaculties() {
         List<Faculty> rsreuFaculties = new ArrayList<>();
-        rsreuFaculties.add(createFaituFaculty());
-        rsreuFaculties.add(createFeFaculty());
+        rsreuFaculties.add(createFacultyOfAutomationAndInformationTechnologiesInSystemManagement());
+        rsreuFaculties.add(createElectronicsFaculty());
         return rsreuFaculties;
     }
 
-    private Faculty createFaituFaculty() {
-        Faculty faituFaculty = new Faculty();
-        faituFaculty.setName("Faculty of Automation and Information Technologies in System Management");
-        faituFaculty.setAudiences(createFaituAudiences());
-        faituFaculty.setDepartments(createFaituDepartments());
-        return faituFaculty;
+    private Faculty createFacultyOfAutomationAndInformationTechnologiesInSystemManagement() {
+        Faculty facultyOfAutomationAndInformationTechnologiesInSystemManagement = new Faculty();
+        facultyOfAutomationAndInformationTechnologiesInSystemManagement.setName("Faculty of Automation and Information Technologies in System Management");
+        facultyOfAutomationAndInformationTechnologiesInSystemManagement.setAudiences(createFacultyOfAutomationAndInformationTechnologiesInSystemManagementAudiences());
+        facultyOfAutomationAndInformationTechnologiesInSystemManagement.setDepartments(createFacultyOfAutomationAndInformationTechnologiesInSystemManagementDepartments());
+        return facultyOfAutomationAndInformationTechnologiesInSystemManagement;
     }
 
-    private List<Audience> createFaituAudiences() {
-        List<Audience> faituAudiences = new ArrayList<>();
-        faituAudiences.add(createAudience313());
-        return faituAudiences;
+    private List<Audience> createFacultyOfAutomationAndInformationTechnologiesInSystemManagementAudiences() {
+        List<Audience> facultyOfAutomationAndInformationTechnologiesInSystemManagementAudiences = new ArrayList<>();
+        facultyOfAutomationAndInformationTechnologiesInSystemManagementAudiences.add(createAudience313());
+        return facultyOfAutomationAndInformationTechnologiesInSystemManagementAudiences;
     }
 
     private Audience createAudience313() {
@@ -68,25 +68,25 @@ public class UniversityStorage {
         return audience313;
     }
 
-    private List<Department> createFaituDepartments() {
-        List<Department> faituDepartments = new ArrayList<>();
-        faituDepartments.add(createAcsDepartment());
-        return faituDepartments;
+    private List<Department> createFacultyOfAutomationAndInformationTechnologiesInSystemManagementDepartments() {
+        List<Department> facultyOfAutomationAndInformationTechnologiesInSystemManagementDepartments = new ArrayList<>();
+        facultyOfAutomationAndInformationTechnologiesInSystemManagementDepartments.add(createAutomatedControlSystemsDepartment());
+        return facultyOfAutomationAndInformationTechnologiesInSystemManagementDepartments;
     }
 
-    private Department createAcsDepartment() {
-        Department acsDepartment = new Department();
-        acsDepartment.setName("Automated control systems");
-        acsDepartment.setGroups(createAcsGroups());
-        acsDepartment.setTeachers(createAcsTeachers());
-        acsDepartment.setSubjects(createAcsSubjects());
-        return acsDepartment;
+    private Department createAutomatedControlSystemsDepartment() {
+        Department automatedControlSystemsDepartment = new Department();
+        automatedControlSystemsDepartment.setName("Automated control systems");
+        automatedControlSystemsDepartment.setGroups(createAutomatedControlSystemsDepartmentGroups());
+        automatedControlSystemsDepartment.setTeachers(createAutomatedControlSystemsDepartmentTeachers());
+        automatedControlSystemsDepartment.setSubjects(createAutomatedControlSystemsDepartmentSubjects());
+        return automatedControlSystemsDepartment;
     }
 
-    private List<Group> createAcsGroups() {
-        List<Group> acsGroups = new ArrayList<>();
-        acsGroups.add(createGroup3033());
-        return acsGroups;
+    private List<Group> createAutomatedControlSystemsDepartmentGroups() {
+        List<Group> automatedControlSystemsGroups = new ArrayList<>();
+        automatedControlSystemsGroups.add(createGroup3033());
+        return automatedControlSystemsGroups;
     }
 
     private Group createGroup3033() {
@@ -111,7 +111,7 @@ public class UniversityStorage {
         return kabatovStudent;
     }
 
-    private List<Teacher> createAcsTeachers() {
+    private List<Teacher> createAutomatedControlSystemsDepartmentTeachers() {
         List<Teacher> acsTeachers = new ArrayList<>();
         acsTeachers.add(createHolopovTeacher());
         return acsTeachers;
@@ -129,44 +129,44 @@ public class UniversityStorage {
 
     private List<Subject> createHolopovSubjects() {
         List<Subject> holopovSubjects = new ArrayList<>();
-        holopovSubjects.add(createPlicSubject());
-        holopovSubjects.add(createIssSubject());
+        holopovSubjects.add(createProgrammingOfLogicIntegratedCircuitsSubject());
+        holopovSubjects.add(createInformationSystemsSoftwareSubject());
         return holopovSubjects;
     }
 
-    private Subject createPlicSubject() {
-        Subject plicSubject = new Subject();
-        plicSubject.setName("Programming of logic integrated circuits");
-        plicSubject.setHoursInSemestr(120);
-        return plicSubject;
+    private Subject createProgrammingOfLogicIntegratedCircuitsSubject() {
+        Subject programmingOfLogicIntegratedCircuitsSubject = new Subject();
+        programmingOfLogicIntegratedCircuitsSubject.setName("Programming of logic integrated circuits");
+        programmingOfLogicIntegratedCircuitsSubject.setHoursInSemestr(120);
+        return programmingOfLogicIntegratedCircuitsSubject;
     }
 
-    private Subject createIssSubject() {
-        Subject issSubject = new Subject();
-        issSubject.setName("Information systems software");
-        issSubject.setHoursInSemestr(116);
-        return issSubject;
+    private Subject createInformationSystemsSoftwareSubject() {
+        Subject informationSystemsSoftwareSubject = new Subject();
+        informationSystemsSoftwareSubject.setName("Information systems software");
+        informationSystemsSoftwareSubject.setHoursInSemestr(116);
+        return informationSystemsSoftwareSubject;
     }
 
-    private List<Subject> createAcsSubjects() {
-        List<Subject> acsSubjects = new ArrayList<>();
-        acsSubjects.add(createPlicSubject());
-        acsSubjects.add(createIssSubject());
-        return acsSubjects;
+    private List<Subject> createAutomatedControlSystemsDepartmentSubjects() {
+        List<Subject> automatedControlSystemsDepartmentSubjects = new ArrayList<>();
+        automatedControlSystemsDepartmentSubjects.add(createProgrammingOfLogicIntegratedCircuitsSubject());
+        automatedControlSystemsDepartmentSubjects.add(createInformationSystemsSoftwareSubject());
+        return automatedControlSystemsDepartmentSubjects;
     }
 
-    private Faculty createFeFaculty() {
-        Faculty feFaculty = new Faculty();
-        feFaculty.setName("Faculty electronics");
-        feFaculty.setAudiences(createFeAudiences());
-        feFaculty.setDepartments(createFeDepartments());
-        return feFaculty;
+    private Faculty createElectronicsFaculty() {
+        Faculty electronicsFaculty = new Faculty();
+        electronicsFaculty.setName("Faculty of electronics");
+        electronicsFaculty.setAudiences(createElectronicsFacultyAudiences());
+        electronicsFaculty.setDepartments(createElectronicsFacultyDepartments());
+        return electronicsFaculty;
     }
 
-    private List<Audience> createFeAudiences() {
-        List<Audience> feAudiences = new ArrayList<>();
-        feAudiences.add(createAudience215());
-        return feAudiences;
+    private List<Audience> createElectronicsFacultyAudiences() {
+        List<Audience> electronicsFacultyAudiences = new ArrayList<>();
+        electronicsFacultyAudiences.add(createAudience215());
+        return electronicsFacultyAudiences;
     }
 
     private Audience createAudience215() {
@@ -177,25 +177,25 @@ public class UniversityStorage {
         return audience215;
     }
 
-    private List<Department> createFeDepartments() {
+    private List<Department> createElectronicsFacultyDepartments() {
         List<Department> feDepartments = new ArrayList<>();
-        feDepartments.add(createEdDepartment());
+        feDepartments.add(createElectronicDevicesDepartment());
         return feDepartments;
     }
 
-    private Department createEdDepartment() {
-        Department edDepartment = new Department();
-        edDepartment.setName("Electronic devices");
-        edDepartment.setTeachers(createEdTeachers());
-        edDepartment.setGroups(createEdGroups());
-        edDepartment.setSubjects(creteEdSubjects());
-        return edDepartment;
+    private Department createElectronicDevicesDepartment() {
+        Department electronicDevicesDepartment = new Department();
+        electronicDevicesDepartment.setName("Electronic devices");
+        electronicDevicesDepartment.setTeachers(createElectronicDevicesDepartmentTeachers());
+        electronicDevicesDepartment.setGroups(createElectronicDevicesDepartmentGroups());
+        electronicDevicesDepartment.setSubjects(creteElectronicDevicesDepartmentSubjects());
+        return electronicDevicesDepartment;
     }
 
-    private List<Teacher> createEdTeachers() {
-        List<Teacher> edTeachers = new ArrayList<>();
-        edTeachers.add(createChirkinTeacher());
-        return edTeachers;
+    private List<Teacher> createElectronicDevicesDepartmentTeachers() {
+        List<Teacher> electronicDevicesDepartmentTeachers = new ArrayList<>();
+        electronicDevicesDepartmentTeachers.add(createChirkinTeacher());
+        return electronicDevicesDepartmentTeachers;
     }
 
     private Teacher createChirkinTeacher() {
@@ -210,21 +210,21 @@ public class UniversityStorage {
 
     private List<Subject> createChirkinSubjects() {
         List<Subject> chirkinSubjects = new ArrayList<>();
-        chirkinSubjects.add(createDddSubject());
+        chirkinSubjects.add(createDesigningOfDigitalDevicesSubject());
         return chirkinSubjects;
     }
 
-    private Subject createDddSubject() {
-        Subject dddSubject = new Subject();
-        dddSubject.setName("Designing of digital devices");
-        dddSubject.setHoursInSemestr(112);
-        return dddSubject;
+    private Subject createDesigningOfDigitalDevicesSubject() {
+        Subject designingOfDigitalDevicesSubject = new Subject();
+        designingOfDigitalDevicesSubject.setName("Designing of digital devices");
+        designingOfDigitalDevicesSubject.setHoursInSemestr(112);
+        return designingOfDigitalDevicesSubject;
     }
 
-    private List<Group> createEdGroups() {
-        List<Group> edGroups = new ArrayList<>();
-        edGroups.add(createGroup2054());
-        return edGroups;
+    private List<Group> createElectronicDevicesDepartmentGroups() {
+        List<Group> electronicDevicesDepartmentGroups = new ArrayList<>();
+        electronicDevicesDepartmentGroups.add(createGroup2054());
+        return electronicDevicesDepartmentGroups;
     }
 
     private Group createGroup2054() {
@@ -249,10 +249,10 @@ public class UniversityStorage {
         return zemovStudent;
     }
 
-    private List<Subject> creteEdSubjects() {
-        List<Subject> edSubjects = new ArrayList<>();
-        edSubjects.add(createDddSubject());
-        return edSubjects;
+    private List<Subject> creteElectronicDevicesDepartmentSubjects() {
+        List<Subject> electronicDevicesDepartmentSubjects = new ArrayList<>();
+        electronicDevicesDepartmentSubjects.add(createDesigningOfDigitalDevicesSubject());
+        return electronicDevicesDepartmentSubjects;
     }
 
     private MonthlySchedule createSeptemberMonthlySchedule() {
@@ -270,48 +270,48 @@ public class UniversityStorage {
     }
 
     private DailySchedule createSeptember10DailySchedule() {
-        DailySchedule sep10DailySchedule = new DailySchedule();
-        sep10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
-        sep10DailySchedule.setLessons(createSeptember10Lessons());
-        return sep10DailySchedule;
+        DailySchedule september10DailySchedule = new DailySchedule();
+        september10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
+        september10DailySchedule.setLessons(createSeptember10Lessons());
+        return september10DailySchedule;
     }
 
     private List<Lesson> createSeptember10Lessons() {
         List<Lesson> september10Lessons = new ArrayList<>();
-        september10Lessons.add(createPlicLessonForGroup3033AndForHolopov());
-        september10Lessons.add(createIssLessonForGroup3033AndForHolopov());
-        september10Lessons.add(createDddLessonForGroup2054AndForChirkin());
+        september10Lessons.add(createProgrammingOfLogicIntegratedCircuitsLessonForGroup3033AndForHolopov());
+        september10Lessons.add(createInformationSystemsSoftwareLessonForGroup3033AndForHolopov());
+        september10Lessons.add(createDesigningOfDigitalDevicesLessonForGroup2054AndForChirkin());
         return september10Lessons;
     }
 
-    private Lesson createPlicLessonForGroup3033AndForHolopov() {
-        Lesson plicLesson = new Lesson();
-        plicLesson.setSubject(createPlicSubject());
-        plicLesson.setGroup(createGroup3033());
-        plicLesson.setTeacher(createHolopovTeacher());
-        plicLesson.setAudience(createAudience313());
-        plicLesson.setTimeStart(LocalTime.of(9, 55));
-        return plicLesson;
+    private Lesson createProgrammingOfLogicIntegratedCircuitsLessonForGroup3033AndForHolopov() {
+        Lesson programmingOfLogicIntegratedCircuitsLesson = new Lesson();
+        programmingOfLogicIntegratedCircuitsLesson.setSubject(createProgrammingOfLogicIntegratedCircuitsSubject());
+        programmingOfLogicIntegratedCircuitsLesson.setGroup(createGroup3033());
+        programmingOfLogicIntegratedCircuitsLesson.setTeacher(createHolopovTeacher());
+        programmingOfLogicIntegratedCircuitsLesson.setAudience(createAudience313());
+        programmingOfLogicIntegratedCircuitsLesson.setTimeStart(LocalTime.of(9, 55));
+        return programmingOfLogicIntegratedCircuitsLesson;
     }
 
-    private Lesson createIssLessonForGroup3033AndForHolopov() {
-        Lesson issLesson = new Lesson();
-        issLesson.setSubject(createIssSubject());
-        issLesson.setGroup(createGroup3033());
-        issLesson.setTeacher(createHolopovTeacher());
-        issLesson.setAudience(createAudience313());
-        issLesson.setTimeStart(LocalTime.of(11, 40));
-        return issLesson;
+    private Lesson createInformationSystemsSoftwareLessonForGroup3033AndForHolopov() {
+        Lesson informationSystemsSoftwareLesson = new Lesson();
+        informationSystemsSoftwareLesson.setSubject(createInformationSystemsSoftwareSubject());
+        informationSystemsSoftwareLesson.setGroup(createGroup3033());
+        informationSystemsSoftwareLesson.setTeacher(createHolopovTeacher());
+        informationSystemsSoftwareLesson.setAudience(createAudience313());
+        informationSystemsSoftwareLesson.setTimeStart(LocalTime.of(11, 40));
+        return informationSystemsSoftwareLesson;
     }
 
-    private Lesson createDddLessonForGroup2054AndForChirkin() {
-        Lesson dddLesson = new Lesson();
-        dddLesson.setSubject(createDddSubject());
-        dddLesson.setGroup(createGroup2054());
-        dddLesson.setTeacher(createChirkinTeacher());
-        dddLesson.setAudience(createAudience215());
-        dddLesson.setTimeStart(LocalTime.of(9, 55));
-        return dddLesson;
+    private Lesson createDesigningOfDigitalDevicesLessonForGroup2054AndForChirkin() {
+        Lesson designingOfDigitalDevicesLesson = new Lesson();
+        designingOfDigitalDevicesLesson.setSubject(createDesigningOfDigitalDevicesSubject());
+        designingOfDigitalDevicesLesson.setGroup(createGroup2054());
+        designingOfDigitalDevicesLesson.setTeacher(createChirkinTeacher());
+        designingOfDigitalDevicesLesson.setAudience(createAudience215());
+        designingOfDigitalDevicesLesson.setTimeStart(LocalTime.of(9, 55));
+        return designingOfDigitalDevicesLesson;
     }
 
     public DailySchedule getDailyScheduleForTeacher(Teacher teacher, int day) {

@@ -47,8 +47,8 @@ public class Main {
     private List<DailySchedule> getMonthlyScheduleForUser() {
         int choiceForWho = getChoiceForWhoScheduleFromConsole();
         int choiceFaculty = getChoiceFacultyFromConsole();
-        int choiceDepartment = getChoiceDepartmentFromConsole(UniversityStorage.getInstance().getRsreuUniversity().getFaculties().get(choiceFaculty - 1));
-        Department chosenDepartment = UniversityStorage.getInstance().getRsreuUniversity().getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
+        int choiceDepartment = getChoiceDepartmentFromConsole(UniversityStorage.getInstance().getUniversity().getFaculties().get(choiceFaculty - 1));
+        Department chosenDepartment = UniversityStorage.getInstance().getUniversity().getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
         if (choiceForWho == 1) {
             Teacher teacher = chosenDepartment.getTeachers().get(getChoiceTeacherFromConsole(chosenDepartment) - 1);
             return UniversityStorage.getInstance().getMonthlyScheduleForSeptember().getMonthlyScheduleForTeacher(teacher);
@@ -74,7 +74,7 @@ public class Main {
     private int getChoiceFacultyFromConsole() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose faculty:");
-        System.out.println(UniversityStorage.getInstance().getRsreuUniversity());
+        System.out.println(UniversityStorage.getInstance().getUniversity());
         return scanner.nextInt();
     }
 
@@ -115,8 +115,8 @@ public class Main {
         int choiceForWho = getChoiceForWhoScheduleFromConsole();
         int choiceDay = getChoiceDayFromConsole();
         int choiceFaculty = getChoiceFacultyFromConsole();
-        int choiceDepartment = getChoiceDepartmentFromConsole(UniversityStorage.getInstance().getRsreuUniversity().getFaculties().get(choiceFaculty - 1));
-        Department department = UniversityStorage.getInstance().getRsreuUniversity().getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
+        int choiceDepartment = getChoiceDepartmentFromConsole(UniversityStorage.getInstance().getUniversity().getFaculties().get(choiceFaculty - 1));
+        Department department = UniversityStorage.getInstance().getUniversity().getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
         if (choiceForWho == 1) {
             Teacher teacher = department.getTeachers().get(getChoiceTeacherFromConsole(department) - 1);
             return UniversityStorage.getInstance().getDailyScheduleForTeacher(teacher, choiceDay);
