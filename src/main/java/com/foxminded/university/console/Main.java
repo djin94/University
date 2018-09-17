@@ -1,11 +1,9 @@
 package com.foxminded.university.console;
 
-import com.foxminded.university.domain.*;
+import com.foxminded.university.domain.schedule.DailySchedule;
+import com.foxminded.university.domain.university.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -119,16 +117,16 @@ public class Main {
         Department department = UniversityStorage.getInstance().getUniversity().getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
         if (choiceForWho == 1) {
             Teacher teacher = department.getTeachers().get(getChoiceTeacherFromConsole(department) - 1);
-            return UniversityStorage.getInstance().getDailyScheduleForTeacher(teacher, choiceDay);
+            return UniversityStorage.getInstance().getDailyScheduleForTeacher(teacher, choiceDay).get();
         }
         if (choiceForWho == 2) {
             Group group = department.getGroups().get(getChoiceGroupFromConsole(department) - 1);
             Student student = group.getStudents().get(getChoiceStudentFromConsole(group) - 1);
-            return UniversityStorage.getInstance().getDailyScheduleForStudent(student, choiceDay);
+            return UniversityStorage.getInstance().getDailyScheduleForStudent(student, choiceDay).get();
         }
         if (choiceForWho == 3) {
             Group group = department.getGroups().get(getChoiceGroupFromConsole(department) - 1);
-            return UniversityStorage.getInstance().getDailyScheduleForGroup(group, choiceDay);
+            return UniversityStorage.getInstance().getDailyScheduleForGroup(group, choiceDay).get();
         }
         return DailySchedule.EMPTY_DAILYSCHEDULE;
     }

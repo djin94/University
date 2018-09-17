@@ -1,7 +1,6 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.university;
 
 public class Student extends Person {
-    public static final Student EMPTY_STUDENT = new Student();
     private int numberOfMarkBook;
 
     public int getNumberOfMarkBook() {

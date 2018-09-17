@@ -1,4 +1,4 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.university;
 
 import java.util.ArrayList;
 import java.util.List;

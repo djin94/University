@@ -1,4 +1,4 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.university;
 
 public class Audience {
     private int number;

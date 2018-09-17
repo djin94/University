@@ -1,10 +1,9 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.university;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Teacher extends Person {
-    public static final Teacher EMPTY_TEACHER = new Teacher();
     private int employeeId;
     private List<Subject> subjects = new ArrayList<>();
 

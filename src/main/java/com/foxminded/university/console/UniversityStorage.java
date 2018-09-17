@@ -1,11 +1,15 @@
 package com.foxminded.university.console;
 
-import com.foxminded.university.domain.*;
+import com.foxminded.university.domain.schedule.DailySchedule;
+import com.foxminded.university.domain.schedule.Lesson;
+import com.foxminded.university.domain.schedule.MonthlySchedule;
+import com.foxminded.university.domain.university.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class UniversityStorage {
     private static UniversityStorage universityStorage;
@@ -314,18 +318,21 @@ public class UniversityStorage {
         return designingOfDigitalDevicesLesson;
     }
 
-    public DailySchedule getDailyScheduleForTeacher(Teacher teacher, int day) {
+    public Optional<DailySchedule> getDailyScheduleForTeacher(Teacher teacher, int day) {
         return monthlyScheduleForSeptember.getMonthlyScheduleForTeacher(teacher).stream()
-                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day).findFirst().get();
+                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day)
+                .findFirst();
     }
 
-    public DailySchedule getDailyScheduleForStudent(Student student, int day) {
+    public Optional<DailySchedule> getDailyScheduleForStudent(Student student, int day) {
         return monthlyScheduleForSeptember.getMonthlyScheduleForStudent(student).stream()
-                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day).findFirst().get();
+                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day)
+                .findFirst();
     }
 
-    public DailySchedule getDailyScheduleForGroup(Group group, int day) {
+    public Optional<DailySchedule> getDailyScheduleForGroup(Group group, int day) {
         return monthlyScheduleForSeptember.getMonthlyScheduleForGroup(group).stream()
-                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day).findFirst().get();
+                .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day)
+                .findFirst();
     }
 }

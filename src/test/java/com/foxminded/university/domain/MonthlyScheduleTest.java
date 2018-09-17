@@ -1,5 +1,9 @@
 package com.foxminded.university.domain;
 
+import com.foxminded.university.domain.schedule.DailySchedule;
+import com.foxminded.university.domain.schedule.Lesson;
+import com.foxminded.university.domain.schedule.MonthlySchedule;
+import com.foxminded.university.domain.university.*;
 import org.junit.Before;
 import org.junit.Test;
 

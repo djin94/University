@@ -1,4 +1,9 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.schedule;
+
+import com.foxminded.university.domain.university.Audience;
+import com.foxminded.university.domain.university.Group;
+import com.foxminded.university.domain.university.Subject;
+import com.foxminded.university.domain.university.Teacher;
 
 import java.time.LocalTime;
 

@@ -1,7 +1,8 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.university;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Group {
     private String name;
@@ -37,13 +38,13 @@ public class Group {
         this.students = students;
     }
 
-    public Student getStudentByNumberOfMarkBook(int numberMarkBook) {
+    public Optional<Student> getStudentByNumberOfMarkBook(int numberMarkBook) {
         for (Student student : students) {
             if (student.getNumberOfMarkBook() == numberMarkBook) {
-                return student;
+                return Optional.of(student);
             }
         }
-        return Student.EMPTY_STUDENT;
+        return Optional.empty();
     }
 
     @Override

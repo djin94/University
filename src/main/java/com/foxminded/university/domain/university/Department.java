@@ -1,7 +1,8 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.university;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Department {
     private String name;
@@ -9,12 +10,12 @@ public class Department {
     private List<Group> groups = new ArrayList<>();
     private List<Subject> subjects = new ArrayList<>();
 
-    public Teacher getTeacherByEmployeeId(int employeeId) {
+    public Optional<Teacher> getTeacherByEmployeeId(int employeeId) {
         for (Teacher teacher : teachers) {
             if (teacher.getEmployeeId() == employeeId)
-                return teacher;
+                return Optional.of(teacher);
         }
-        return Teacher.EMPTY_TEACHER;
+        return Optional.empty();
     }
 
     public void addTeacher(Teacher teacher) {

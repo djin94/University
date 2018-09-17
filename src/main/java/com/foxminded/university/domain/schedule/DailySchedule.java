@@ -1,4 +1,8 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.schedule;
+
+import com.foxminded.university.domain.university.Group;
+import com.foxminded.university.domain.university.Student;
+import com.foxminded.university.domain.university.Teacher;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.university;
 
 public abstract class Person {
     private String lastName;
