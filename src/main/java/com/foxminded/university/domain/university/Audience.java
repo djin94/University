@@ -50,4 +50,9 @@ public class Audience {
     public int hashCode() {
         return 31 * number + building;
     }
+
+    @Override
+    public String toString() {
+        return number + "u" + building;
+    }
 }

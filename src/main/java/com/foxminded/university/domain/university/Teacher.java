@@ -51,4 +51,9 @@ public class Teacher extends Person {
     public int hashCode() {
         return 31 * employeeId + (subjects != null ? subjects.hashCode() : 0);
     }
+
+    @Override
+    public String toString() {
+        return getLastName() + " " + getFirstName() + " " + getPatronym();
+    }
 }

@@ -25,4 +25,9 @@ public class Student extends Person {
     public int hashCode() {
         return numberOfMarkBook;
     }
+
+    @Override
+    public String toString() {
+        return getLastName() + " " + getFirstName() + " " + getPatronym();
+    }
 }

@@ -72,14 +72,14 @@ public class Main {
     private int getChoiceFacultyFromConsole() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose faculty:");
-        System.out.println(UniversityStorage.getInstance().getUniversity());
+        System.out.println(UniversityStorage.getInstance().getUniversity().showListFaculties());
         return scanner.nextInt();
     }
 
     private int getChoiceDepartmentFromConsole(Faculty faculty) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose department:");
-        System.out.println(faculty);
+        System.out.println(faculty.showListDepartment());
         return scanner.nextInt();
     }
 
@@ -139,10 +139,6 @@ public class Main {
 
     private void printSchedule(List<DailySchedule> dailySchedules) {
         dailySchedules.stream().flatMap(dailySchedule -> dailySchedule.getLessons().stream())
-                .peek(lesson -> System.out.println("Time: " + lesson.getTimeStart().toString()))
-                .peek(lesson -> System.out.println("Subject: " + lesson.getSubject().getName()))
-                .peek(lesson -> System.out.println("Group: " + lesson.getGroup().getName()))
-                .peek(lesson -> System.out.println("Teacher: " + lesson.getTeacher().getLastName()))
-                .forEach(lesson -> System.out.println("Audience: " + lesson.getAudience().getNumber() + "u" + lesson.getAudience().getBuilding() + "\n"));
+                .forEach(lesson -> System.out.println(lesson));
     }
 }

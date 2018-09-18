@@ -37,6 +37,14 @@ public class University {
         this.faculties = faculties;
     }
 
+    public String showListFaculties() {
+        String listFaculties = name + "\n";
+        for (int i = 0; i < faculties.size(); i++) {
+            listFaculties += String.valueOf(i + 1) + " - " + faculties.get(i) + "\n";
+        }
+        return listFaculties;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,10 +64,6 @@ public class University {
 
     @Override
     public String toString() {
-        String listFaculties = "";
-        for (int i = 0; i < faculties.size(); i++) {
-            listFaculties += String.valueOf(i + 1) + " - " + faculties.get(i).getName() + "\n";
-        }
-        return listFaculties;
+        return name;
     }
 }

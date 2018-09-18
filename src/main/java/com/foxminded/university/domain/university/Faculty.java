@@ -56,6 +56,15 @@ public class Faculty {
         this.audiences = audiences;
     }
 
+    public String showListDepartment() {
+        String listDepartments = name + "\n";
+        for (int i = 0; i < departments.size(); i++) {
+            listDepartments += String.valueOf(i + 1) + " - " + departments.get(i) + "\n";
+        }
+        return listDepartments;
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,10 +82,6 @@ public class Faculty {
 
     @Override
     public String toString() {
-        String listDepartments = name;
-        for (int i = 0; i < departments.size(); i++) {
-            listDepartments += String.valueOf(i + 1) + " - " + departments.get(i).getName() + "\n";
-        }
-        return listDepartments;
+        return name;
     }
 }

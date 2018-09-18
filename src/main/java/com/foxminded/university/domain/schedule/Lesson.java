@@ -84,4 +84,13 @@ public class Lesson {
         result = 31 * result + (audience != null ? audience.hashCode() : 0);
         return 31 * result + (timeStart != null ? timeStart.hashCode() : 0);
     }
+
+    @Override
+    public String toString() {
+        return "Time: " + timeStart + "\n" +
+                "Subject: " + subject + "\n" +
+                "Group: " + group + "\n" +
+                "Teacher: " + teacher + "\n" +
+                "Audience: " + audience + "\n";
+    }
 }
