@@ -60,10 +60,10 @@ public class UniversityStorage {
     }
 
     private List<Faculty> createRyazanStateRadioengineeringUniversityFaculties() {
-        List<Faculty> rsreuFaculties = new ArrayList<>();
-        rsreuFaculties.add(createFacultyOfAutomationAndInformationTechnologiesInSystemManagement());
-        rsreuFaculties.add(createElectronicsFaculty());
-        return rsreuFaculties;
+        List<Faculty> ryazanStateRadioengineeringUniversityFaculties = new ArrayList<>();
+        ryazanStateRadioengineeringUniversityFaculties.add(createFacultyOfAutomationAndInformationTechnologiesInSystemManagement());
+        ryazanStateRadioengineeringUniversityFaculties.add(createElectronicsFaculty());
+        return ryazanStateRadioengineeringUniversityFaculties;
     }
 
     private Faculty createFacultyOfAutomationAndInformationTechnologiesInSystemManagement() {
