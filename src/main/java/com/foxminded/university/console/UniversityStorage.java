@@ -14,6 +14,8 @@ import java.util.Optional;
 public class UniversityStorage {
     private static UniversityStorage universityStorage;
     private University university;
+    private List<Faculty> faculties;
+    private List<Department> departments;
     private MonthlySchedule monthlyScheduleForSeptember;
 
     private UniversityStorage() {
@@ -23,6 +25,8 @@ public class UniversityStorage {
         if (universityStorage == null) {
             universityStorage = new UniversityStorage();
             universityStorage.university = universityStorage.createRyazanStateRadioengineeringUniversity();
+            universityStorage.faculties = universityStorage.createRyazanStateRadioengineeringUniversityFaculties();
+            universityStorage.departments = universityStorage.createAllDepartments();
             universityStorage.monthlyScheduleForSeptember = universityStorage.createSeptemberMonthlySchedule();
         }
         return universityStorage;
@@ -34,6 +38,18 @@ public class UniversityStorage {
 
     public MonthlySchedule getMonthlyScheduleForSeptember() {
         return monthlyScheduleForSeptember;
+    }
+
+    public static UniversityStorage getUniversityStorage() {
+        return universityStorage;
+    }
+
+    public List<Faculty> getFaculties() {
+        return faculties;
+    }
+
+    public List<Department> getDepartments() {
+        return departments;
     }
 
     private University createRyazanStateRadioengineeringUniversity() {
@@ -259,6 +275,13 @@ public class UniversityStorage {
         return electronicDevicesDepartmentSubjects;
     }
 
+    private List<Department> createAllDepartments() {
+        List<Department> allDepartments = new ArrayList<>();
+        allDepartments.addAll(createElectronicsFacultyDepartments());
+        allDepartments.addAll(createFacultyOfAutomationAndInformationTechnologiesInSystemManagementDepartments());
+        return allDepartments;
+    }
+
     private MonthlySchedule createSeptemberMonthlySchedule() {
         MonthlySchedule septemberMonthlySchedule = new MonthlySchedule();
         septemberMonthlySchedule.setMonth(9);
@@ -317,6 +340,7 @@ public class UniversityStorage {
         designingOfDigitalDevicesLesson.setTimeStart(LocalTime.of(9, 55));
         return designingOfDigitalDevicesLesson;
     }
+
 
     public Optional<DailySchedule> getDailyScheduleForTeacher(Teacher teacher, int day) {
         return monthlyScheduleForSeptember.getMonthlyScheduleForTeacher(teacher).stream()
