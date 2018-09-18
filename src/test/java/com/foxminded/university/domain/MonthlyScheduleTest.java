@@ -138,7 +138,7 @@ public class MonthlyScheduleTest {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForHolopov;
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForTeacher(holopovTeacher);
 
-        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+        assertEquals(expectedMonthlySchedule,actualMonthlySchedule);
     }
 
     @Test
@@ -146,7 +146,7 @@ public class MonthlyScheduleTest {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForKabatov;
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForStudent(kabatovStudent);
 
-        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }
 
     @Test
@@ -154,7 +154,7 @@ public class MonthlyScheduleTest {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForGroup3033;
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForGroup(group3033);
 
-        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }
 
     @Test
@@ -162,7 +162,7 @@ public class MonthlyScheduleTest {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForAnikeev;
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForTeacher(anikeevTeacher);
 
-        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }
 
     @Test
@@ -170,7 +170,7 @@ public class MonthlyScheduleTest {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForIvanov;
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForStudent(ivanovStudent);
 
-        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }
 
     @Test
@@ -178,7 +178,7 @@ public class MonthlyScheduleTest {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForGroup2070;
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForGroup(group2070);
 
-        assertArrayEquals(expectedMonthlySchedule.toArray(), actualMonthlySchedule.toArray());
+        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }
 
     @Test
