@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -197,15 +198,15 @@ public class MonthlyScheduleTest {
     @Test
     public void shouldReturnDailySchedule_WhenInvokeDailyScheduleByDate() {
         DailySchedule expectedDailySchedule = september10DailySchedule;
-        DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 10));
+        DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 10)).get();
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
 
     @Test
     public void shouldReturnEmptyDailySchedule_WhenNotDailyScheduleForDate() {
-        DailySchedule expectedDailySchedule = DailySchedule.EMPTY_DAILYSCHEDULE;
-        DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 11));
+        Optional<DailySchedule> expectedDailySchedule= Optional.empty();
+        Optional<DailySchedule> actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 11));
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
