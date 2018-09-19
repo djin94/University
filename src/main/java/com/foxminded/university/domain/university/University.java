@@ -54,8 +54,8 @@ public class University {
         return universityStructure;
     }
 
-    private String getListFacultyDepartments(Faculty faculty){
-        String listDepartments="";
+    private String getListFacultyDepartments(Faculty faculty) {
+        String listDepartments = "";
         for (Department department : faculty.getDepartments())
             listDepartments += " Department: " + department + "\n";
         return listDepartments;
