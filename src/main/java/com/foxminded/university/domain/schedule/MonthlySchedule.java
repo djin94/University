@@ -7,6 +7,7 @@ import com.foxminded.university.domain.university.Teacher;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MonthlySchedule {
     private List<DailySchedule> dailySchedules = new ArrayList<>();
@@ -21,12 +22,12 @@ public class MonthlySchedule {
         dailySchedules.remove(dailySchedule);
     }
 
-    public DailySchedule getDailySchedule(LocalDate date) {
+    public Optional<DailySchedule> getDailySchedule(LocalDate date) {
         for (DailySchedule dailySchedule : dailySchedules) {
             if (dailySchedule.getDate().equals(date))
-                return dailySchedule;
+                return Optional.of(dailySchedule);
         }
-        return DailySchedule.EMPTY_DAILYSCHEDULE;
+        return Optional.empty();
     }
 
     public List<DailySchedule> getMonthlyScheduleForTeacher(Teacher teacher) {

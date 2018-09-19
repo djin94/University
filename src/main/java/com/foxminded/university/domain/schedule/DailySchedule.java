@@ -11,7 +11,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DailySchedule {
-    public static final DailySchedule EMPTY_DAILYSCHEDULE = new DailySchedule();
     private List<Lesson> lessons = new ArrayList<>();
     private LocalDate date;
 
