@@ -1,13 +1,9 @@
 package com.foxminded.university.console;
 
 import com.foxminded.university.domain.schedule.DailySchedule;
-import com.foxminded.university.domain.schedule.Lesson;
 import com.foxminded.university.domain.schedule.MonthlySchedule;
 import com.foxminded.university.domain.university.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

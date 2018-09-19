@@ -62,7 +62,6 @@ public class Faculty {
             listDepartments += String.valueOf(i + 1) + " - " + departments.get(i) + "\n";
         }
         return listDepartments;
-
     }
 
     @Override

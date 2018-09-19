@@ -25,7 +25,7 @@ public class MonthlyScheduleTest {
     private Subject plicSubject;
     private MonthlySchedule monthlyScheduleForUniversity;
     private Lesson plicLesson;
-    private DailySchedule sep10DailySchedule;
+    private DailySchedule september10DailySchedule;
 
     private List<DailySchedule> monthlyScheduleForHolopov;
     private List<DailySchedule> monthlyScheduleForKabatov;
@@ -37,6 +37,12 @@ public class MonthlyScheduleTest {
     private Group group2070;
     private List<DailySchedule> monthlyScheduleForGroup2070;
     private DailySchedule emptyDailySchedule;
+    private List<Lesson> dailyScheduleForHolopov;
+    private List<Lesson> dailyScheduleForKabatov;
+    private List<Lesson> dailyScheduleForGroup3033;
+    private List<Lesson> dailyScheduleForAnikeev;
+    private List<Lesson> dailyScheduleForIvanov;
+    private List<Lesson> dailyScheduleForGroup2070;
 
     @Before
     public void setUp() {
@@ -88,23 +94,23 @@ public class MonthlyScheduleTest {
         plicLesson.setAudience(audience313);
         plicLesson.setTimeStart(LocalTime.of(9, 55));
 
-        sep10DailySchedule = new DailySchedule();
-        sep10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
-        sep10DailySchedule.addLesson(plicLesson);
+        september10DailySchedule = new DailySchedule();
+        september10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
+        september10DailySchedule.addLesson(plicLesson);
 
         monthlyScheduleForUniversity = new MonthlySchedule();
         monthlyScheduleForUniversity.setMonth(9);
         monthlyScheduleForUniversity.setYear(2018);
-        monthlyScheduleForUniversity.addDailySchedule(sep10DailySchedule);
+        monthlyScheduleForUniversity.addDailySchedule(september10DailySchedule);
 
         monthlyScheduleForHolopov = new ArrayList<>();
-        monthlyScheduleForHolopov.add(sep10DailySchedule);
+        monthlyScheduleForHolopov.add(september10DailySchedule);
 
         monthlyScheduleForKabatov = new ArrayList<>();
-        monthlyScheduleForKabatov.add(sep10DailySchedule);
+        monthlyScheduleForKabatov.add(september10DailySchedule);
 
         monthlyScheduleForGroup3033 = new ArrayList<>();
-        monthlyScheduleForGroup3033.add(sep10DailySchedule);
+        monthlyScheduleForGroup3033.add(september10DailySchedule);
 
         anikeevTeacher = new Teacher();
         anikeevTeacher.setFirstName("Sergey");
@@ -131,6 +137,13 @@ public class MonthlyScheduleTest {
         monthlyScheduleForGroup2070 = new ArrayList<>();
         monthlyScheduleForGroup2070.add(emptyDailySchedule);
 
+        dailyScheduleForHolopov = september10DailySchedule.getLessons();
+        dailyScheduleForKabatov = september10DailySchedule.getLessons();
+        dailyScheduleForGroup3033 = september10DailySchedule.getLessons();
+
+        dailyScheduleForAnikeev = emptyDailySchedule.getLessons();
+        dailyScheduleForIvanov = emptyDailySchedule.getLessons();
+        dailyScheduleForGroup2070 = emptyDailySchedule.getLessons();
     }
 
     @Test
@@ -138,7 +151,7 @@ public class MonthlyScheduleTest {
         List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForHolopov;
         List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForTeacher(holopovTeacher);
 
-        assertEquals(expectedMonthlySchedule,actualMonthlySchedule);
+        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }
 
     @Test
@@ -183,7 +196,7 @@ public class MonthlyScheduleTest {
 
     @Test
     public void shouldReturnDailySchedule_WhenInvokeDailyScheduleByDate() {
-        DailySchedule expectedDailySchedule = sep10DailySchedule;
+        DailySchedule expectedDailySchedule = september10DailySchedule;
         DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 10));
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
@@ -193,6 +206,46 @@ public class MonthlyScheduleTest {
     public void shouldReturnEmptyDailySchedule_WhenNotDailyScheduleForDate() {
         DailySchedule expectedDailySchedule = DailySchedule.EMPTY_DAILYSCHEDULE;
         DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 11));
+
+        assertEquals(expectedDailySchedule, actualDailySchedule);
+    }
+
+    @Test
+    public void shouldReturnDailyScheduleForTeacher_WhenInvokeDailyScheduleForTeacher() {
+        List<Lesson> expectedDailySchedule = dailyScheduleForHolopov;
+        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForTeacher(holopovTeacher);
+
+        assertEquals(expectedDailySchedule, actualDailySchedule);
+    }
+
+    @Test
+    public void shouldReturnDailyScheduleForStudent_WhenInvokeDailyScheduleForStudent() {
+        List<Lesson> expectedDailySchedule = dailyScheduleForKabatov;
+        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForStudent(kabatovStudent);
+
+        assertEquals(expectedDailySchedule, actualDailySchedule);
+    }
+
+    @Test
+    public void shouldReturnDailyScheduleForGroup_WhenInvokeDailyScheduleForGroup() {
+        List<Lesson> expectedDailySchedule = dailyScheduleForGroup3033;
+        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForGroup(group3033);
+
+        assertEquals(expectedDailySchedule, actualDailySchedule);
+    }
+
+    @Test
+    public void shouldReturnEmptyDailyScheduleForTeacher_WhenNotLessonsForTeacher() {
+        List<Lesson> expectedDailySchedule = dailyScheduleForAnikeev;
+        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForTeacher(anikeevTeacher);
+
+        assertEquals(expectedDailySchedule, actualDailySchedule);
+    }
+
+    @Test
+    public void shouldReturnEmptyDailyScheduleForStudent_WhenNotLessonsForStudent() {
+        List<Lesson> expectedDailySchedule = dailyScheduleForIvanov;
+        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForStudent(ivanovStudent);
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }

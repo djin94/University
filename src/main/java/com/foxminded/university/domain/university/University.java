@@ -37,12 +37,28 @@ public class University {
         this.faculties = faculties;
     }
 
-    public String showListFaculties() {
+    public String getListFaculties() {
         String listFaculties = name + "\n";
         for (int i = 0; i < faculties.size(); i++) {
             listFaculties += String.valueOf(i + 1) + " - " + faculties.get(i) + "\n";
         }
         return listFaculties;
+    }
+
+    public String getUniversityStructure() {
+        String universityStructure = "Structure " + name + ":\n";
+        for (Faculty faculty : faculties) {
+            universityStructure += "Faculty: " + faculty + "\n";
+            universityStructure += getListFacultyDepartments(faculty);
+        }
+        return universityStructure;
+    }
+
+    private String getListFacultyDepartments(Faculty faculty){
+        String listDepartments="";
+        for (Department department : faculty.getDepartments())
+            listDepartments += " Department: " + department + "\n";
+        return listDepartments;
     }
 
     @Override

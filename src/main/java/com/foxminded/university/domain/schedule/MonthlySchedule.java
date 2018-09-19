@@ -37,10 +37,10 @@ public class MonthlySchedule {
         return teacherMonthlySchedule;
     }
 
-    private DailySchedule makeDailyScheduleForTeacher(Teacher teacher, DailySchedule dailySchedule) {
+    private DailySchedule makeDailyScheduleForTeacher(Teacher teacher, DailySchedule allLessonsForDay) {
         DailySchedule teacherDailySchedule = new DailySchedule();
-        teacherDailySchedule.setDate(dailySchedule.getDate());
-        teacherDailySchedule.setLessons(dailySchedule.getDailyScheduleForTeacher(teacher));
+        teacherDailySchedule.setDate(allLessonsForDay.getDate());
+        teacherDailySchedule.setLessons(allLessonsForDay.getDailyScheduleForTeacher(teacher));
         return teacherDailySchedule;
     }
 
@@ -52,10 +52,10 @@ public class MonthlySchedule {
         return studentMonthlySchedule;
     }
 
-    private DailySchedule makeDailyScheduleForStudent(Student student, DailySchedule dailySchedule) {
+    private DailySchedule makeDailyScheduleForStudent(Student student, DailySchedule allLessonsForDay) {
         DailySchedule studentDailySchedule = new DailySchedule();
-        studentDailySchedule.setDate(dailySchedule.getDate());
-        studentDailySchedule.setLessons(dailySchedule.getDailyScheduleForStudent(student));
+        studentDailySchedule.setDate(allLessonsForDay.getDate());
+        studentDailySchedule.setLessons(allLessonsForDay.getDailyScheduleForStudent(student));
         return studentDailySchedule;
     }
 
@@ -67,10 +67,10 @@ public class MonthlySchedule {
         return groupMonthlySchedule;
     }
 
-    private DailySchedule makeDailyScheduleForGroup(Group group, DailySchedule dailySchedule) {
+    private DailySchedule makeDailyScheduleForGroup(Group group, DailySchedule allLessonsForDay) {
         DailySchedule groupDailySchedule = new DailySchedule();
-        groupDailySchedule.setDate(dailySchedule.getDate());
-        groupDailySchedule.setLessons(dailySchedule.getDailyScheduleForGroup(group));
+        groupDailySchedule.setDate(allLessonsForDay.getDate());
+        groupDailySchedule.setLessons(allLessonsForDay.getDailyScheduleForGroup(group));
         return groupDailySchedule;
     }
 

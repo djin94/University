@@ -12,7 +12,8 @@ public class Main {
         Main main = new Main();
         System.out.println("Hello! Whose and what schedule do you want to see?");
         do {
-            try {
+            try{
+                main.printStrucureUniversity();
                 List<DailySchedule> userSchedule = main.getScheduleForUser();
                 main.printSchedule(userSchedule);
             } catch (Exception e) {
@@ -22,6 +23,10 @@ public class Main {
                 stop = scanner.next().equals("n");
             }
         } while (!stop);
+    }
+
+    private void printStrucureUniversity() {
+        System.out.println(UniversityStorage.getInstance().getUniversity().getUniversityStructure());
     }
 
     private List<DailySchedule> getScheduleForUser() {
@@ -72,7 +77,7 @@ public class Main {
     private int getChoiceFacultyFromConsole() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose faculty:");
-        System.out.println(UniversityStorage.getInstance().getUniversity().showListFaculties());
+        System.out.println(UniversityStorage.getInstance().getUniversity().getListFaculties());
         return scanner.nextInt();
     }
 
