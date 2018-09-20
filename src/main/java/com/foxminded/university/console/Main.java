@@ -12,9 +12,9 @@ public class Main {
         Main main = new Main();
         System.out.println("Hello! Whose and what schedule do you want to see?");
         do {
-            try{
-                main.printStrucureUniversity();
-                List<DailySchedule> userSchedule = main.getScheduleForUser();
+            try {
+                main.printUniversityStructure();
+                List<DailySchedule> userSchedule = main.getUserSchedule();
                 main.printSchedule(userSchedule);
             } catch (Exception e) {
                 System.out.println("Enter only the specified numbers");
@@ -25,23 +25,23 @@ public class Main {
         } while (!stop);
     }
 
-    private void printStrucureUniversity() {
+    private void printUniversityStructure() {
         System.out.println(UniversityStorage.getInstance().getUniversity().getUniversityStructure());
     }
 
-    private List<DailySchedule> getScheduleForUser() {
+    private List<DailySchedule> getUserSchedule() {
         List<DailySchedule> scheduleForUser = new ArrayList<>();
-        int choiceTypeSchedule = getChoiceTypeScheduleFromConsole();
-        if (choiceTypeSchedule == 1) {
+        int choice = getInt();
+        if (choice == 1) {
             scheduleForUser.addAll(getMonthlyScheduleForUser());
         }
-        if (choiceTypeSchedule == 2) {
+        if (choice == 2) {
             scheduleForUser.add(getDailyScheduleForUser().get());
         }
         return scheduleForUser;
     }
 
-    private int getChoiceTypeScheduleFromConsole() {
+    private int getInt() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose schedule type: 1 - For month, 2 - For day");
         return scanner.nextInt();
@@ -92,8 +92,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose teacher:");
         for (int i = 0; i < department.getTeachers().size(); i++) {
-            System.out.print(String.valueOf(i + 1) + " - " + department.getTeachers().get(i).getLastName() + " ");
-            System.out.println(department.getTeachers().get(i).getFirstName() + " " + department.getTeachers().get(i).getPatronym());
+            System.out.print(String.valueOf(i + 1) + " - " + department.getTeachers().get(i));
         }
         return scanner.nextInt();
     }
@@ -101,8 +100,8 @@ public class Main {
     private int getChoiceGroupFromConsole(Department department) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose group:");
-        for (int i = 0; i < department.getTeachers().size(); i++) {
-            System.out.println(String.valueOf(i + 1) + " - " + department.getGroups().get(i).getName());
+        for (int i = 0; i < department.getGroups().size(); i++) {
+            System.out.println(String.valueOf(i + 1) + " - " + department.getGroups().get(i));
         }
         return scanner.nextInt();
     }
@@ -110,7 +109,9 @@ public class Main {
     private int getChoiceStudentFromConsole(Group group) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose student:");
-        System.out.println(group);
+        for (int i = 0; i < group.getStudents().size(); i++) {
+            System.out.println(String.valueOf(i + 1) + " - " + group.getStudents().get(i));
+        }
         return scanner.nextInt();
     }
 
