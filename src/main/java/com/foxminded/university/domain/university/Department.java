@@ -11,11 +11,12 @@ public class Department {
     private List<Subject> subjects = new ArrayList<>();
 
     public Optional<Teacher> getTeacherByEmployeeId(int employeeId) {
-        for (Teacher teacher : teachers) {
-            if (teacher.getEmployeeId() == employeeId)
-                return Optional.of(teacher);
-        }
-        return Optional.empty();
+        return teachers.stream().filter(teacher -> teacher.getEmployeeId() == employeeId).findFirst();
+//        for (Teacher teacher : teachers) {
+//            if (teacher.getEmployeeId() == employeeId)
+//                return Optional.of(teacher);
+//        }
+//        return Optional.empty();
     }
 
     public void addTeacher(Teacher teacher) {
