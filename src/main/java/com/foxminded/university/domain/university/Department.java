@@ -12,11 +12,6 @@ public class Department {
 
     public Optional<Teacher> getTeacherByEmployeeId(int employeeId) {
         return teachers.stream().filter(teacher -> teacher.getEmployeeId() == employeeId).findFirst();
-//        for (Teacher teacher : teachers) {
-//            if (teacher.getEmployeeId() == employeeId)
-//                return Optional.of(teacher);
-//        }
-//        return Optional.empty();
     }
 
     public void addTeacher(Teacher teacher) {
