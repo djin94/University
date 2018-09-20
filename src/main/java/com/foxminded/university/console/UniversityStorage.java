@@ -10,8 +10,6 @@ import java.util.Optional;
 public class UniversityStorage {
     private static UniversityStorage universityStorage;
     private University university;
-    private List<Faculty> faculties;
-    private List<Department> departments;
     private MonthlySchedule monthlyScheduleForSeptember;
 
     private UniversityStorage() {
@@ -22,8 +20,6 @@ public class UniversityStorage {
             universityStorage = new UniversityStorage();
             UniversityCreator universityCreator = new UniversityCreator();
             universityStorage.university = universityCreator.createRyazanStateRadioengineeringUniversity();
-            universityStorage.faculties = universityStorage.university.getFaculties();
-            universityStorage.departments = universityCreator.createAllDepartments();
             universityStorage.monthlyScheduleForSeptember = universityCreator.createSeptemberMonthlySchedule();
         }
         return universityStorage;
@@ -35,18 +31,6 @@ public class UniversityStorage {
 
     public MonthlySchedule getMonthlyScheduleForSeptember() {
         return monthlyScheduleForSeptember;
-    }
-
-    public static UniversityStorage getUniversityStorage() {
-        return universityStorage;
-    }
-
-    public List<Faculty> getFaculties() {
-        return faculties;
-    }
-
-    public List<Department> getDepartments() {
-        return departments;
     }
 
     public Optional<DailySchedule> getDailyScheduleForTeacher(Teacher teacher, int day) {

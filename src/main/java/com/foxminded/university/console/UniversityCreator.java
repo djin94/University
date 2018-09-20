@@ -234,13 +234,6 @@ public class UniversityCreator {
         return electronicDevicesDepartmentSubjects;
     }
 
-    public List<Department> createAllDepartments() {
-        List<Department> allDepartments = new ArrayList<>();
-        allDepartments.addAll(createElectronicsFacultyDepartments());
-        allDepartments.addAll(createFacultyOfAutomationAndInformationTechnologiesInSystemManagementDepartments());
-        return allDepartments;
-    }
-
     public MonthlySchedule createSeptemberMonthlySchedule() {
         MonthlySchedule septemberMonthlySchedule = new MonthlySchedule();
         septemberMonthlySchedule.setMonth(9);

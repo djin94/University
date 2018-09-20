@@ -1,6 +1,7 @@
 package com.foxminded.university.console;
 
 import com.foxminded.university.domain.schedule.DailySchedule;
+import com.foxminded.university.domain.schedule.MonthlySchedule;
 import com.foxminded.university.domain.university.*;
 
 import java.util.*;
@@ -33,10 +34,10 @@ public class Main {
         List<DailySchedule> scheduleForUser = new ArrayList<>();
         int choice = getInt();
         if (choice == 1) {
-            scheduleForUser.addAll(getMonthlyScheduleForUser());
+            scheduleForUser.addAll(getUserMonthlySchedule());
         }
         if (choice == 2) {
-            scheduleForUser.add(getDailyScheduleForUser().get());
+            scheduleForUser.add(getUserDailySchedule().get());
         }
         return scheduleForUser;
     }
@@ -47,37 +48,32 @@ public class Main {
         return scanner.nextInt();
     }
 
-    private List<DailySchedule> getMonthlyScheduleForUser() {
-        int choiceWhoseSchedule = getChoiceWhoseScheduleFromConsole();
-        int choiceFaculty = getChoiceFacultyFromConsole();
-        int choiceDepartment = getChoiceDepartmentFromConsole(UniversityStorage.getInstance().getUniversity().getFaculties().get(choiceFaculty - 1));
-        Department chosenDepartment = UniversityStorage.getInstance().getUniversity().getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
+    private List<DailySchedule> getUserMonthlySchedule() {
+        University university = UniversityStorage.getInstance().getUniversity();
+        MonthlySchedule monthlySchedule = UniversityStorage.getInstance().getMonthlyScheduleForSeptember();
+        int choiceWhoseSchedule = getChoiceFromConsole("Choose and write: 1 - Teacher, 2 - Student, 3 - Group");
+        int choiceFaculty = getChoiceFromConsole("Choose faculty:\n" + university.getListFaculties());
+        int choiceDepartment = getChoiceDepartmentFromConsole(university.getFaculties().get(choiceFaculty - 1));
+        Department chosenDepartment = university.getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
         if (choiceWhoseSchedule == 1) {
             Teacher teacher = chosenDepartment.getTeachers().get(getChoiceTeacherFromConsole(chosenDepartment) - 1);
-            return UniversityStorage.getInstance().getMonthlyScheduleForSeptember().getMonthlyScheduleForTeacher(teacher);
+            return monthlySchedule.getMonthlyScheduleForTeacher(teacher);
         }
         if (choiceWhoseSchedule == 2) {
             Group group = chosenDepartment.getGroups().get(getChoiceGroupFromConsole(chosenDepartment) - 1);
             Student student = group.getStudents().get(getChoiceStudentFromConsole(group) - 1);
-            return UniversityStorage.getInstance().getMonthlyScheduleForSeptember().getMonthlyScheduleForStudent(student);
+            return monthlySchedule.getMonthlyScheduleForStudent(student);
         }
         if (choiceWhoseSchedule == 3) {
             Group group = chosenDepartment.getGroups().get(getChoiceGroupFromConsole(chosenDepartment) - 1);
-            return UniversityStorage.getInstance().getMonthlyScheduleForSeptember().getMonthlyScheduleForGroup(group);
+            return monthlySchedule.getMonthlyScheduleForGroup(group);
         }
         return Collections.emptyList();
     }
 
-    private int getChoiceWhoseScheduleFromConsole() {
+    private int getChoiceFromConsole(String printString) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Choose and write: 1 - Teacher, 2 - Student, 3 - Group");
-        return scanner.nextInt();
-    }
-
-    private int getChoiceFacultyFromConsole() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Choose faculty:");
-        System.out.println(UniversityStorage.getInstance().getUniversity().getListFaculties());
+        System.out.println(printString);
         return scanner.nextInt();
     }
 
@@ -92,7 +88,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose teacher:");
         for (int i = 0; i < department.getTeachers().size(); i++) {
-            System.out.print(String.valueOf(i + 1) + " - " + department.getTeachers().get(i));
+            System.out.print(String.valueOf(i + 1) + " - " + department.getTeachers().get(i)+"\n");
         }
         return scanner.nextInt();
     }
@@ -101,7 +97,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose group:");
         for (int i = 0; i < department.getGroups().size(); i++) {
-            System.out.println(String.valueOf(i + 1) + " - " + department.getGroups().get(i));
+            System.out.println(String.valueOf(i + 1) + " - " + department.getGroups().get(i)+"\n");
         }
         return scanner.nextInt();
     }
@@ -110,27 +106,28 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose student:");
         for (int i = 0; i < group.getStudents().size(); i++) {
-            System.out.println(String.valueOf(i + 1) + " - " + group.getStudents().get(i));
+            System.out.println(String.valueOf(i + 1) + " - " + group.getStudents().get(i)+"\n");
         }
         return scanner.nextInt();
     }
 
-    private Optional<DailySchedule> getDailyScheduleForUser() {
-        int choiceForWho = getChoiceWhoseScheduleFromConsole();
+    private Optional<DailySchedule> getUserDailySchedule() {
+        University university = UniversityStorage.getInstance().getUniversity();
+        int choiceWhoseSchedule = getChoiceFromConsole("Choose and write: 1 - Teacher, 2 - Student, 3 - Group");
         int choiceDay = getChoiceDayFromConsole();
-        int choiceFaculty = getChoiceFacultyFromConsole();
-        int choiceDepartment = getChoiceDepartmentFromConsole(UniversityStorage.getInstance().getUniversity().getFaculties().get(choiceFaculty - 1));
-        Department department = UniversityStorage.getInstance().getUniversity().getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
-        if (choiceForWho == 1) {
+        int choiceFaculty = getChoiceFromConsole("Choose faculty:\n" + university.getListFaculties());
+        int choiceDepartment = getChoiceDepartmentFromConsole(university.getFaculties().get(choiceFaculty - 1));
+        Department department = university.getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
+        if (choiceWhoseSchedule == 1) {
             Teacher teacher = department.getTeachers().get(getChoiceTeacherFromConsole(department) - 1);
             return UniversityStorage.getInstance().getDailyScheduleForTeacher(teacher, choiceDay);
         }
-        if (choiceForWho == 2) {
+        if (choiceWhoseSchedule == 2) {
             Group group = department.getGroups().get(getChoiceGroupFromConsole(department) - 1);
             Student student = group.getStudents().get(getChoiceStudentFromConsole(group) - 1);
             return UniversityStorage.getInstance().getDailyScheduleForStudent(student, choiceDay);
         }
-        if (choiceForWho == 3) {
+        if (choiceWhoseSchedule == 3) {
             Group group = department.getGroups().get(getChoiceGroupFromConsole(department) - 1);
             return UniversityStorage.getInstance().getDailyScheduleForGroup(group, choiceDay);
         }
