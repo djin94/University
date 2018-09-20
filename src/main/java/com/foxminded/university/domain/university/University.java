@@ -46,19 +46,18 @@ public class University {
     }
 
     public String getUniversityStructure() {
-        String universityStructure = "Structure " + name + ":\n";
-        for (Faculty faculty : faculties) {
-            universityStructure += "Faculty: " + faculty + "\n";
-            universityStructure += getListFacultyDepartments(faculty);
-        }
-        return universityStructure;
+        StringBuilder universityStructure = new StringBuilder("Structure " + name + ":\n");
+        faculties.stream()
+                .forEach(faculty -> universityStructure.append("Faculty: ").append(faculty).append("\n")
+                        .append(getListFacultyDepartments(faculty)));
+        return universityStructure.toString();
     }
 
     private String getListFacultyDepartments(Faculty faculty) {
-        String listDepartments = "";
-        for (Department department : faculty.getDepartments())
-            listDepartments += " Department: " + department + "\n";
-        return listDepartments;
+        StringBuilder listDepartments = new StringBuilder();
+        faculty.getDepartments().stream()
+                .forEach(department -> listDepartments.append(" Department: ").append(department).append("\n"));
+        return listDepartments.toString();
     }
 
     @Override
