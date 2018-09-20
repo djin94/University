@@ -87,27 +87,21 @@ public class Main {
     private int getChoiceTeacherFromConsole(Department department) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose teacher:");
-        for (int i = 0; i < department.getTeachers().size(); i++) {
-            System.out.print(String.valueOf(i + 1) + " - " + department.getTeachers().get(i)+"\n");
-        }
+        System.out.println(department.showListTeachers());
         return scanner.nextInt();
     }
 
     private int getChoiceGroupFromConsole(Department department) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose group:");
-        for (int i = 0; i < department.getGroups().size(); i++) {
-            System.out.println(String.valueOf(i + 1) + " - " + department.getGroups().get(i)+"\n");
-        }
+        System.out.println(department.showListGroups());
         return scanner.nextInt();
     }
 
     private int getChoiceStudentFromConsole(Group group) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Choose student:");
-        for (int i = 0; i < group.getStudents().size(); i++) {
-            System.out.println(String.valueOf(i + 1) + " - " + group.getStudents().get(i)+"\n");
-        }
+        System.out.println(group.showListStudents());
         return scanner.nextInt();
     }
 

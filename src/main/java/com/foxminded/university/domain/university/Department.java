@@ -84,6 +84,21 @@ public class Department {
         this.subjects = subjects;
     }
 
+    public String showListTeachers() {
+        String listTeachers = name + "\n";
+        for (int i = 0; i < teachers.size(); i++)
+            listTeachers += String.valueOf(i + 1) + " - " + teachers.get(i) + "\n";
+        return listTeachers;
+    }
+
+    public String showListGroups() {
+        String listGroups = name + "\n";
+        for (int i = 0; i < groups.size(); i++) {
+            listGroups += String.valueOf(i + 1) + " - " + groups.get(i) + "\n";
+        }
+        return listGroups;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
