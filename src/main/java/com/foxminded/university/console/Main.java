@@ -135,7 +135,8 @@ public class Main {
     }
 
     private void printSchedule(List<DailySchedule> dailySchedules) {
-        dailySchedules.stream().flatMap(dailySchedule -> dailySchedule.getLessons().stream())
+        dailySchedules.stream()
+                .flatMap(dailySchedule -> dailySchedule.getLessons().stream())
                 .forEach(System.out::println);
     }
 }
