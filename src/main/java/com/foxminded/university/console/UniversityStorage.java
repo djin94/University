@@ -4,7 +4,6 @@ import com.foxminded.university.domain.schedule.DailySchedule;
 import com.foxminded.university.domain.schedule.MonthlySchedule;
 import com.foxminded.university.domain.university.*;
 
-import java.util.List;
 import java.util.Optional;
 
 public class UniversityStorage {
