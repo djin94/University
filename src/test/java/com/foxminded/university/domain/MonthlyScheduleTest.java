@@ -310,9 +310,6 @@ public class MonthlyScheduleTest {
 
     @Test
     public void shouldAddFacultyToUniversity_WhenAddFacultyToUniversity() {
-        University university = new University();
-        university.addFaculty(faituFaculty);
-
         List<Faculty> expectedFaculties = storedFaculties;
         List<Faculty> actualStoredFaculties = university.getFaculties();
 
@@ -331,11 +328,8 @@ public class MonthlyScheduleTest {
 
     @Test
     public void shouldAddAudienceToFaculty_WhenAddAudienceToFaculty() {
-        Faculty faculty = new Faculty();
-        faculty.addAudience(audience313);
-
         List<Audience> expectedAudiences = storedAudiences;
-        List<Audience> actualStoredAudiences = faculty.getAudiences();
+        List<Audience> actualStoredAudiences = faituFaculty.getAudiences();
 
         assertEquals(expectedAudiences, actualStoredAudiences);
     }
@@ -352,11 +346,8 @@ public class MonthlyScheduleTest {
 
     @Test
     public void shouldAddDepartmentToFaculty_WhenAddDepartmentToFaculty() {
-        Faculty faculty = new Faculty();
-        faculty.addDepartment(acsDepartment);
-
         List<Department> expectedDepartments = storedDepartments;
-        List<Department> actualStoredDepartments = faculty.getDepartments();
+        List<Department> actualStoredDepartments = faituFaculty.getDepartments();
 
         assertEquals(expectedDepartments, actualStoredDepartments);
     }
@@ -373,11 +364,8 @@ public class MonthlyScheduleTest {
 
     @Test
     public void shouldAddTeacherToDepartment_WhenAddTeacherToDepartment() {
-        Department department = new Department();
-        department.addTeacher(holopovTeacher);
-
         List<Teacher> expectedStoredTeachers = storedTeachers;
-        List<Teacher> actualStoredTeachers = department.getTeachers();
+        List<Teacher> actualStoredTeachers = acsDepartment.getTeachers();
 
         assertEquals(expectedStoredTeachers, actualStoredTeachers);
     }
@@ -394,11 +382,8 @@ public class MonthlyScheduleTest {
 
     @Test
     public void shouldAddGroupToDepartment_WhenAddGroupToDepartment() {
-        Department department = new Department();
-        department.addGroup(group3033);
-
         List<Group> expectedStoredGroups = storedGroups;
-        List<Group> actualStoredGroups = department.getGroups();
+        List<Group> actualStoredGroups = acsDepartment.getGroups();
 
         assertEquals(expectedStoredGroups, actualStoredGroups);
     }
@@ -415,11 +400,8 @@ public class MonthlyScheduleTest {
 
     @Test
     public void shouldAddSubjectToDepartment_WhenAddSubjectToDepartment() {
-        Department department = new Department();
-        department.addSubject(plicSubject);
-
         List<Subject> expectedStoredSubjects = storedSubjects;
-        List<Subject> actualStoredSubjects = department.getSubjects();
+        List<Subject> actualStoredSubjects = acsDepartment.getSubjects();
 
         assertEquals(expectedStoredSubjects, actualStoredSubjects);
     }
@@ -436,11 +418,8 @@ public class MonthlyScheduleTest {
 
     @Test
     public void shouldAddStudentToDepartment_WhenAddStudentToDepartment() {
-        Group group = new Group();
-        group.addStudent(kabatovStudent);
-
         List<Student> expectedStoredStudents = storedStudents;
-        List<Student> actualStoredStudents = group.getStudents();
+        List<Student> actualStoredStudents = group3033.getStudents();
 
         assertEquals(expectedStoredStudents, actualStoredStudents);
     }
