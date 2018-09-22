@@ -1,6 +1,5 @@
 package com.foxminded.university.domain;
 
-import com.foxminded.university.console.UniversityStorage;
 import com.foxminded.university.domain.schedule.DailySchedule;
 import com.foxminded.university.domain.schedule.Lesson;
 import com.foxminded.university.domain.schedule.MonthlySchedule;
@@ -17,9 +16,15 @@ import java.util.Optional;
 import static org.junit.Assert.*;
 
 public class MonthlyScheduleTest {
+    private University university;
+    private Faculty faituFaculty;
+    private Audience audience313;
+    private Department acsDepartment;
     private Group group3033;
+    private Subject plicSubject;
     private Student kabatovStudent;
     private Teacher holopovTeacher;
+    private Lesson plicLesson;
     private MonthlySchedule monthlyScheduleForUniversity;
     private DailySchedule september10DailySchedule;
 
@@ -39,9 +44,24 @@ public class MonthlyScheduleTest {
     private List<Lesson> dailyScheduleForIvanov;
     private List<Lesson> dailyScheduleForGroup2070;
 
+    private List<Faculty> storedFaculties;
+    private List<Faculty> emptyStoredFaculties;
+    private List<Department> storedDepartments;
+    private List<Department> emptyStoredDepartments;
+    private List<Audience> storedAudiences;
+    private List<Audience> emptyStoredAudiences;
+    private List<Teacher> storedTeachers;
+    private List<Teacher> emptyStoredTeachers;
+    private List<Group> storedGroups;
+    private List<Group> emptyStoredGroups;
+    private List<Subject> storedSubjects;
+    private List<Subject> emptyStoredSubjects;
+    private List<Student> storedStudents;
+    private List<Student> emptyStoredStudents;
+
     @Before
     public void setUp() {
-        Subject plicSubject = new Subject();
+        plicSubject = new Subject();
         plicSubject.setName("PLIS");
         plicSubject.setHoursInSemestr(120);
 
@@ -62,27 +82,27 @@ public class MonthlyScheduleTest {
         group3033.setName("3033");
         group3033.addStudent(kabatovStudent);
 
-        Department acsDepartment = new Department();
+        acsDepartment = new Department();
         acsDepartment.setName("ASU");
         acsDepartment.addGroup(group3033);
         acsDepartment.addTeacher(holopovTeacher);
         acsDepartment.addSubject(plicSubject);
 
-        Audience audience313 = new Audience();
+        audience313 = new Audience();
         audience313.setNumber(313);
         audience313.setBuilding(1);
         audience313.setType("Laboratory");
 
-        Faculty faituFaculty = new Faculty();
+        faituFaculty = new Faculty();
         faituFaculty.setName("FAITU");
         faituFaculty.addAudience(audience313);
         faituFaculty.addDepartment(acsDepartment);
 
-        University university = new University();
+        university = new University();
         university.setName("RSREU");
         university.addFaculty(faituFaculty);
 
-        Lesson plicLesson = new Lesson();
+        plicLesson = new Lesson();
         plicLesson.setSubject(plicSubject);
         plicLesson.setGroup(group3033);
         plicLesson.setTeacher(holopovTeacher);
@@ -139,6 +159,41 @@ public class MonthlyScheduleTest {
         dailyScheduleForAnikeev = emptyDailySchedule.getLessons();
         dailyScheduleForIvanov = emptyDailySchedule.getLessons();
         dailyScheduleForGroup2070 = emptyDailySchedule.getLessons();
+
+        storedFaculties = new ArrayList<>();
+        storedFaculties.add(faituFaculty);
+
+        emptyStoredFaculties = new ArrayList<>();
+
+        storedDepartments = new ArrayList<>();
+        storedDepartments.add(acsDepartment);
+
+        emptyStoredDepartments = new ArrayList<>();
+
+        storedAudiences = new ArrayList<>();
+        storedAudiences.add(audience313);
+
+        emptyStoredAudiences = new ArrayList<>();
+
+        storedTeachers = new ArrayList<>();
+        storedTeachers.add(holopovTeacher);
+
+        emptyStoredTeachers = new ArrayList<>();
+
+        storedGroups = new ArrayList<>();
+        storedGroups.add(group3033);
+
+        emptyStoredGroups = new ArrayList<>();
+
+        storedSubjects = new ArrayList<>();
+        storedSubjects.add(plicSubject);
+
+        emptyStoredSubjects = new ArrayList<>();
+
+        storedStudents = new ArrayList<>();
+        storedStudents.add(kabatovStudent);
+
+        emptyStoredStudents = new ArrayList<>();
     }
 
     @Test
@@ -199,7 +254,7 @@ public class MonthlyScheduleTest {
 
     @Test
     public void shouldReturnEmptyDailySchedule_WhenNotDailyScheduleForDate() {
-        Optional<DailySchedule> expectedDailySchedule= Optional.empty();
+        Optional<DailySchedule> expectedDailySchedule = Optional.empty();
         Optional<DailySchedule> actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 11));
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
@@ -251,5 +306,152 @@ public class MonthlyScheduleTest {
         List<Lesson> actualMonthlySchedule = september10DailySchedule.getDailyScheduleForGroup(group2070);
 
         assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
+    }
+
+    @Test
+    public void shouldAddFacultyToUniversity_WhenAddFacultyToUniversity() {
+        University university = new University();
+        university.addFaculty(faituFaculty);
+
+        List<Faculty> expectedFaculties = storedFaculties;
+        List<Faculty> actualStoredFaculties = university.getFaculties();
+
+        assertEquals(expectedFaculties, actualStoredFaculties);
+    }
+
+    @Test
+    public void shouldRemoveFacultyFromUniversity_WhenRemoveFacultyFromUniversity() {
+        university.removeFaculty(faituFaculty);
+
+        List<Faculty> expectedFaculties = emptyStoredFaculties;
+        List<Faculty> actualStoredFaculties = university.getFaculties();
+
+        assertEquals(expectedFaculties, actualStoredFaculties);
+    }
+
+    @Test
+    public void shouldAddAudienceToFaculty_WhenAddAudienceToFaculty() {
+        Faculty faculty = new Faculty();
+        faculty.addAudience(audience313);
+
+        List<Audience> expectedAudiences = storedAudiences;
+        List<Audience> actualStoredAudiences = faculty.getAudiences();
+
+        assertEquals(expectedAudiences, actualStoredAudiences);
+    }
+
+    @Test
+    public void shouldRemoveAudienceFromFaculty_WhenRemoveAudienceFromFaculty() {
+        faituFaculty.removeAudience(audience313);
+
+        List<Audience> expectedAudiences = emptyStoredAudiences;
+        List<Audience> actualStoredAudiences = faituFaculty.getAudiences();
+
+        assertEquals(expectedAudiences, actualStoredAudiences);
+    }
+
+    @Test
+    public void shouldAddDepartmentToFaculty_WhenAddDepartmentToFaculty() {
+        Faculty faculty = new Faculty();
+        faculty.addDepartment(acsDepartment);
+
+        List<Department> expectedDepartments = storedDepartments;
+        List<Department> actualStoredDepartments = faculty.getDepartments();
+
+        assertEquals(expectedDepartments, actualStoredDepartments);
+    }
+
+    @Test
+    public void shouldRemoveDepartmentFromFaculty_WhenRemoveDepartmentFromFaculty() {
+        faituFaculty.removeDepartment(acsDepartment);
+
+        List<Department> expectedDepartments = emptyStoredDepartments;
+        List<Department> actualStoredDepartments = faituFaculty.getDepartments();
+
+        assertEquals(expectedDepartments, actualStoredDepartments);
+    }
+
+    @Test
+    public void shouldAddTeacherToDepartment_WhenAddTeacherToDepartment() {
+        Department department = new Department();
+        department.addTeacher(holopovTeacher);
+
+        List<Teacher> expectedStoredTeachers = storedTeachers;
+        List<Teacher> actualStoredTeachers = department.getTeachers();
+
+        assertEquals(expectedStoredTeachers, actualStoredTeachers);
+    }
+
+    @Test
+    public void shouldRemoveTeacherFromDepartment_WhenRemoveTeacherFromDepartment() {
+        acsDepartment.removeTeacher(holopovTeacher);
+
+        List<Teacher> expectedStoredTeachers = emptyStoredTeachers;
+        List<Teacher> actualStoredTeachers = acsDepartment.getTeachers();
+
+        assertEquals(expectedStoredTeachers, actualStoredTeachers);
+    }
+
+    @Test
+    public void shouldAddGroupToDepartment_WhenAddGroupToDepartment() {
+        Department department = new Department();
+        department.addGroup(group3033);
+
+        List<Group> expectedStoredGroups = storedGroups;
+        List<Group> actualStoredGroups = department.getGroups();
+
+        assertEquals(expectedStoredGroups, actualStoredGroups);
+    }
+
+    @Test
+    public void shouldRemoveGroupFromDepartment_WhenRemoveGroupFromDepartment() {
+        acsDepartment.removeGroup(group3033);
+
+        List<Group> expectedStoredGroups = emptyStoredGroups;
+        List<Group> actualStoredGroups = acsDepartment.getGroups();
+
+        assertEquals(expectedStoredGroups, actualStoredGroups);
+    }
+
+    @Test
+    public void shouldAddSubjectToDepartment_WhenAddSubjectToDepartment() {
+        Department department = new Department();
+        department.addSubject(plicSubject);
+
+        List<Subject> expectedStoredSubjects = storedSubjects;
+        List<Subject> actualStoredSubjects = department.getSubjects();
+
+        assertEquals(expectedStoredSubjects, actualStoredSubjects);
+    }
+
+    @Test
+    public void shouldRemoveSubjectFromDepartment_WhenRemoveSubjectFromDepartment() {
+        acsDepartment.removeSubject(plicSubject);
+
+        List<Subject> expectedStoredSubjects = emptyStoredSubjects;
+        List<Subject> actualStoredSubjects = acsDepartment.getSubjects();
+
+        assertEquals(expectedStoredSubjects, actualStoredSubjects);
+    }
+
+    @Test
+    public void shouldAddStudentToDepartment_WhenAddStudentToDepartment() {
+        Group group = new Group();
+        group.addStudent(kabatovStudent);
+
+        List<Student> expectedStoredStudents = storedStudents;
+        List<Student> actualStoredStudents = group.getStudents();
+
+        assertEquals(expectedStoredStudents, actualStoredStudents);
+    }
+
+    @Test
+    public void shouldRemoveStudentFromDepartment_WhenRemoveStudentFromDepartment() {
+        group3033.removeStudent(kabatovStudent);
+
+        List<Student> expectedStoredStudents = emptyStoredStudents;
+        List<Student> actualStoredStudents = group3033.getStudents();
+
+        assertEquals(expectedStoredStudents, actualStoredStudents);
     }
 }
