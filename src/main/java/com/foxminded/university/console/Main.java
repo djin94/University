@@ -31,8 +31,8 @@ public class Main {
     }
 
     private List<DailySchedule> getUserSchedule() {
-        List<DailySchedule> scheduleForUser = new ArrayList<>();
         int choice = getInt();
+        List<DailySchedule> scheduleForUser = new ArrayList<>();
         if (choice == 1) {
             scheduleForUser.addAll(getUserMonthlySchedule());
         }
