@@ -11,6 +11,14 @@ public class Student extends Person {
         this.numberOfMarkBook = numberOfMarkBook;
     }
 
+    public void update(Student student) {
+        this.setLastName(student.getLastName());
+        this.setFirstName(student.getFirstName());
+        this.setPatronym(student.getPatronym());
+        this.numberOfMarkBook = student.getNumberOfMarkBook();
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

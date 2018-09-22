@@ -44,6 +44,10 @@ public class MonthlyScheduleTest {
     private List<Lesson> dailyScheduleForIvanov;
     private List<Lesson> dailyScheduleForGroup2070;
 
+    private List<DailySchedule> storedDailySchedules;
+    private List<DailySchedule> emptyStoredDailySchedules;
+    private List<Lesson> storedLessons;
+    private List<Lesson> emptyStoredLessons;
     private List<Faculty> storedFaculties;
     private List<Faculty> emptyStoredFaculties;
     private List<Department> storedDepartments;
@@ -58,6 +62,18 @@ public class MonthlyScheduleTest {
     private List<Subject> emptyStoredSubjects;
     private List<Student> storedStudents;
     private List<Student> emptyStoredStudents;
+
+    private University updateUniversity;
+    private Faculty updateFaculty;
+    private Department updateDepartment;
+    private Group updateGroup;
+    private Student updateStudent;
+    private Teacher updateTeacher;
+    private Subject updateSubject;
+    private Audience updateAudience;
+    private Lesson updateLesson;
+    private MonthlySchedule updateMonthlySchedule;
+    private DailySchedule updateDailySchedule;
 
     @Before
     public void setUp() {
@@ -194,6 +210,50 @@ public class MonthlyScheduleTest {
         storedStudents.add(kabatovStudent);
 
         emptyStoredStudents = new ArrayList<>();
+
+        storedDailySchedules = new ArrayList<>();
+        storedDailySchedules.add(september10DailySchedule);
+
+        emptyStoredDailySchedules = new ArrayList<>();
+
+        storedLessons = new ArrayList<>();
+        storedLessons.add(plicLesson);
+
+        emptyStoredLessons = new ArrayList<>();
+
+        updateUniversity = new University();
+        updateUniversity.setName("Moscow Institute of Physics and Technology ");
+
+        updateFaculty = new Faculty();
+        updateFaculty.setName("General and applied physics");
+
+        updateDepartment = new Department();
+        updateDepartment.setName("High energy physics");
+
+        updateGroup = group2070;
+        updateStudent = ivanovStudent;
+        updateTeacher = anikeevTeacher;
+
+        updateSubject = new Subject();
+        updateSubject.setName("The quantum physics");
+
+        updateAudience = new Audience();
+        updateAudience.setNumber(255);
+        updateAudience.setBuilding(1);
+
+        updateLesson = new Lesson();
+        updateLesson.setSubject(updateSubject);
+        updateLesson.setAudience(updateAudience);
+        updateLesson.setGroup(updateGroup);
+        updateLesson.setTeacher(updateTeacher);
+        updateLesson.setTimeStart(LocalTime.of(9, 55));
+
+        updateDailySchedule = new DailySchedule();
+        updateDailySchedule.setDate(LocalDate.of(2018, 9, 11));
+        updateDailySchedule.addLesson(updateLesson);
+
+        updateMonthlySchedule = new MonthlySchedule();
+        updateMonthlySchedule.addDailySchedule(updateDailySchedule);
     }
 
     @Test
@@ -306,6 +366,42 @@ public class MonthlyScheduleTest {
         List<Lesson> actualMonthlySchedule = september10DailySchedule.getDailyScheduleForGroup(group2070);
 
         assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
+    }
+
+    @Test
+    public void shouldAddDailyScheduleToMonthlySchedule_WhenAddDailyScheduleToMonthlySchedule() {
+        List<DailySchedule> expectedStoredDailySchedule = storedDailySchedules;
+        List<DailySchedule> actualStoredDailySchedules = monthlyScheduleForUniversity.getDailySchedules();
+
+        assertEquals(expectedStoredDailySchedule, actualStoredDailySchedules);
+    }
+
+    @Test
+    public void shouldRemoveDailyScheduleFromMonthlySchedule_WhenRemoveDailyScheduleFromMonthlySchedule() {
+        monthlyScheduleForUniversity.removeDailySchedule(september10DailySchedule);
+
+        List<DailySchedule> expectedStoredDailySchedule = emptyStoredDailySchedules;
+        List<DailySchedule> actualStoredDailySchedules = monthlyScheduleForUniversity.getDailySchedules();
+
+        assertEquals(expectedStoredDailySchedule, actualStoredDailySchedules);
+    }
+
+    @Test
+    public void shouldAddLessonToDailySchedule_WhenAddLessonToDailySchedule() {
+        List<Lesson> expectedStoredLessons = storedLessons;
+        List<Lesson> actualStoredLessons = september10DailySchedule.getLessons();
+
+        assertEquals(expectedStoredLessons, actualStoredLessons);
+    }
+
+    @Test
+    public void shouldRemoveLessonFromDailySchedule_WhenRemoveLessonFromDailySchedule() {
+        september10DailySchedule.removeLesson(plicLesson);
+
+        List<Lesson> expectedStoredLessons = emptyStoredLessons;
+        List<Lesson> actualStoredLessons = september10DailySchedule.getLessons();
+
+        assertEquals(expectedStoredLessons, actualStoredLessons);
     }
 
     @Test
@@ -432,5 +528,133 @@ public class MonthlyScheduleTest {
         List<Student> actualStoredStudents = group3033.getStudents();
 
         assertEquals(expectedStoredStudents, actualStoredStudents);
+    }
+
+    @Test
+    public void shouldAddSubjectToTeacher_WhenAddSubjectToTeacher() {
+        List<Subject> expectedStoredSubjects = storedSubjects;
+        List<Subject> actualStoredSubjects = acsDepartment.getSubjects();
+
+        assertEquals(expectedStoredSubjects, actualStoredSubjects);
+    }
+
+    @Test
+    public void shouldRemoveSubjectFromTeacher_WhenRemoveSubjectFromTeacher() {
+        acsDepartment.removeSubject(plicSubject);
+
+        List<Subject> expectedStoredSubjects = emptyStoredSubjects;
+        List<Subject> actualStoredSubjects = acsDepartment.getSubjects();
+
+        assertEquals(expectedStoredSubjects, actualStoredSubjects);
+    }
+
+    @Test
+    public void shouldUpdateUniversity_WhenUpdateUniversity() {
+        university.update(updateUniversity);
+
+        University expectedUniversity = updateUniversity;
+        University actualUniversity = university;
+
+        assertEquals(expectedUniversity, actualUniversity);
+    }
+
+    @Test
+    public void shouldUpdateFaculty_WhenUpdateFaculty() {
+        faituFaculty.update(updateFaculty);
+
+        Faculty expectedFaculty = updateFaculty;
+        Faculty actualFaculty = faituFaculty;
+
+        assertEquals(expectedFaculty, actualFaculty);
+    }
+
+    @Test
+    public void shouldUpdateDepartment_WhenUpdateDepartment() {
+        acsDepartment.update(updateDepartment);
+
+        Department expectedDepartment = updateDepartment;
+        Department actualDepartment = acsDepartment;
+
+        assertEquals(expectedDepartment, actualDepartment);
+    }
+
+    @Test
+    public void shouldUpdateGroup_WhenUpdateGroup() {
+        group3033.update(updateGroup);
+
+        Group expectedGroup = updateGroup;
+        Group actualGroup = group3033;
+
+        assertEquals(expectedGroup, actualGroup);
+    }
+
+    @Test
+    public void shouldUpdateTeacher_WhenUpdateTeacher() {
+        holopovTeacher.update(updateTeacher);
+
+        Teacher expectedTeacher = updateTeacher;
+        Teacher actualTeacher = holopovTeacher;
+
+        assertEquals(expectedTeacher, actualTeacher);
+    }
+
+    @Test
+    public void shouldUpdateStudent_WhenUpdateStudent() {
+        kabatovStudent.update(updateStudent);
+
+        Student expectedStudent = updateStudent;
+        Student actualStudent = kabatovStudent;
+
+        assertEquals(expectedStudent, actualStudent);
+    }
+
+    @Test
+    public void shouldUpdateSubject_WhenUpdateSubject() {
+        plicSubject.update(updateSubject);
+
+        Subject expectedSubject = updateSubject;
+        Subject actualSubject = plicSubject;
+
+        assertEquals(expectedSubject, actualSubject);
+    }
+
+    @Test
+    public void shouldUpdateAudience_WhenUpdateAudience() {
+        audience313.update(updateAudience);
+
+        Audience expectedAudience = updateAudience;
+        Audience actualAudience = audience313;
+
+        assertEquals(expectedAudience, actualAudience);
+    }
+
+    @Test
+    public void shouldUpdateLesson_WhenUpdateLesson() {
+        plicLesson.update(updateLesson);
+
+        Lesson expectedLesson = updateLesson;
+        Lesson actualLesson = plicLesson;
+
+        assertEquals(expectedLesson, actualLesson);
+    }
+
+    @Test
+    public void shouldUpdateDailySchedule_WhenUpdateDailySchedule() {
+        september10DailySchedule.update(updateDailySchedule);
+
+        DailySchedule expectedDailySchedule = updateDailySchedule;
+        DailySchedule actualDailySchedule = september10DailySchedule;
+
+        assertEquals(expectedDailySchedule, actualDailySchedule);
+    }
+
+    @Test
+    public void shouldUpdateMonthlySchedule_WhenUpdateMonthlySchedule() {
+        monthlyScheduleForUniversity.update(updateMonthlySchedule);
+
+        MonthlySchedule expectedMonthlySchedule = updateMonthlySchedule;
+        MonthlySchedule actualMonthlySchedule = monthlyScheduleForUniversity;
+
+        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }
 }

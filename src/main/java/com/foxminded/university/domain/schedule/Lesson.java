@@ -65,7 +65,7 @@ public class Lesson {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Teacher)) {
+        if (!(o instanceof Lesson)) {
             return false;
         }
         Lesson lesson = (Lesson) o;
