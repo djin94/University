@@ -32,14 +32,14 @@ public class Main {
 
     private List<DailySchedule> getUserSchedule() {
         int choice = getInt();
-        List<DailySchedule> scheduleForUser = new ArrayList<>();
+        List<DailySchedule> userSchedule = new ArrayList<>();
         if (choice == 1) {
-            scheduleForUser.addAll(getUserMonthlySchedule());
+            userSchedule.addAll(getUserMonthlySchedule());
         }
         if (choice == 2) {
-            scheduleForUser.add(getUserDailySchedule().get());
+            userSchedule.add(getUserDailySchedule().get());
         }
-        return scheduleForUser;
+        return userSchedule;
     }
 
     private int getInt() {
