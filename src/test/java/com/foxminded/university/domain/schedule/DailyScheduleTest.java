@@ -1,8 +1,5 @@
-package com.foxminded.university.domain;
+package com.foxminded.university.domain.schedule;
 
-import com.foxminded.university.domain.schedule.DailySchedule;
-import com.foxminded.university.domain.schedule.Lesson;
-import com.foxminded.university.domain.schedule.MonthlySchedule;
 import com.foxminded.university.domain.university.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +12,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 
-public class MonthlyScheduleTest {
+public class DailyScheduleTest {
     private Group group3033;
     private Student kabatovStudent;
     private Teacher holopovTeacher;
@@ -23,15 +20,9 @@ public class MonthlyScheduleTest {
     private MonthlySchedule monthlyScheduleForUniversity;
     private DailySchedule september10DailySchedule;
 
-    private List<DailySchedule> monthlyScheduleForHolopov;
-    private List<DailySchedule> monthlyScheduleForKabatov;
-    private List<DailySchedule> monthlyScheduleForGroup3033;
     private Teacher anikeevTeacher;
-    private List<DailySchedule> monthlyScheduleForAnikeev;
     private Student ivanovStudent;
-    private List<DailySchedule> monthlyScheduleForIvanov;
     private Group group2070;
-    private List<DailySchedule> monthlyScheduleForGroup2070;
     private List<Lesson> dailyScheduleForHolopov;
     private List<Lesson> dailyScheduleForKabatov;
     private List<Lesson> dailyScheduleForGroup3033;
@@ -39,16 +30,12 @@ public class MonthlyScheduleTest {
     private List<Lesson> dailyScheduleForIvanov;
     private List<Lesson> dailyScheduleForGroup2070;
 
-    private List<DailySchedule> storedDailySchedules;
-    private List<DailySchedule> emptyStoredDailySchedules;
     private List<Lesson> storedLessons;
     private List<Lesson> emptyStoredLessons;
-    private Lesson updateLesson;
-    private MonthlySchedule updateMonthlySchedule;
     private DailySchedule updateDailySchedule;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         Subject plicSubject = new Subject();
         plicSubject.setName("PLIS");
         plicSubject.setHoursInSemestr(120);
@@ -106,15 +93,6 @@ public class MonthlyScheduleTest {
         monthlyScheduleForUniversity.setYear(2018);
         monthlyScheduleForUniversity.addDailySchedule(september10DailySchedule);
 
-        monthlyScheduleForHolopov = new ArrayList<>();
-        monthlyScheduleForHolopov.add(september10DailySchedule);
-
-        monthlyScheduleForKabatov = new ArrayList<>();
-        monthlyScheduleForKabatov.add(september10DailySchedule);
-
-        monthlyScheduleForGroup3033 = new ArrayList<>();
-        monthlyScheduleForGroup3033.add(september10DailySchedule);
-
         anikeevTeacher = new Teacher();
         anikeevTeacher.setFirstName("Sergey");
         anikeevTeacher.setPatronym("Vladimirovich");
@@ -123,22 +101,13 @@ public class MonthlyScheduleTest {
         DailySchedule emptyDailySchedule = new DailySchedule();
         emptyDailySchedule.setDate(LocalDate.of(2018, 9, 10));
 
-        monthlyScheduleForAnikeev = new ArrayList<>();
-        monthlyScheduleForAnikeev.add(emptyDailySchedule);
-
         ivanovStudent = new Student();
         ivanovStudent.setFirstName("Ivan");
         ivanovStudent.setPatronym("Ivanovich");
         ivanovStudent.setLastName("Ivanov");
 
-        monthlyScheduleForIvanov = new ArrayList<>();
-        monthlyScheduleForIvanov.add(emptyDailySchedule);
-
         group2070 = new Group();
         group2070.setName("2070");
-
-        monthlyScheduleForGroup2070 = new ArrayList<>();
-        monthlyScheduleForGroup2070.add(emptyDailySchedule);
 
         dailyScheduleForHolopov = september10DailySchedule.getLessons();
         dailyScheduleForKabatov = september10DailySchedule.getLessons();
@@ -147,11 +116,6 @@ public class MonthlyScheduleTest {
         dailyScheduleForAnikeev = emptyDailySchedule.getLessons();
         dailyScheduleForIvanov = emptyDailySchedule.getLessons();
         dailyScheduleForGroup2070 = emptyDailySchedule.getLessons();
-
-        storedDailySchedules = new ArrayList<>();
-        storedDailySchedules.add(september10DailySchedule);
-
-        emptyStoredDailySchedules = new ArrayList<>();
 
         storedLessons = new ArrayList<>();
         storedLessons.add(plicLesson);
@@ -177,67 +141,8 @@ public class MonthlyScheduleTest {
         updateAudience.setNumber(255);
         updateAudience.setBuilding(1);
 
-        updateLesson = new Lesson();
-        updateLesson.setSubject(updateSubject);
-        updateLesson.setAudience(updateAudience);
-        updateLesson.setGroup(updateGroup);
-        updateLesson.setTeacher(updateTeacher);
-        updateLesson.setTimeStart(LocalTime.of(9, 55));
-
         updateDailySchedule = new DailySchedule();
         updateDailySchedule.setDate(LocalDate.of(2018, 9, 11));
-        updateDailySchedule.addLesson(updateLesson);
-
-        updateMonthlySchedule = new MonthlySchedule();
-        updateMonthlySchedule.addDailySchedule(updateDailySchedule);
-    }
-
-    @Test
-    public void shouldReturnMonthlyScheduleForTeacher_WhenGetMonthlyScheduleForTeacher() {
-        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForHolopov;
-        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForTeacher(holopovTeacher);
-
-        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
-    }
-
-    @Test
-    public void shouldReturnMonthlyScheduleForStudent_WhenGetMonthlyScheduleForStudent() {
-        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForKabatov;
-        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForStudent(kabatovStudent);
-
-        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
-    }
-
-    @Test
-    public void shouldReturnMonthlyScheduleForGroup_WhenGetMonthlyScheduleForGroup() {
-        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForGroup3033;
-        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForGroup(group3033);
-
-        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
-    }
-
-    @Test
-    public void shouldReturnEmptyMonthlyScheduleForTeacher_WhenNotLessonsForTeacher() {
-        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForAnikeev;
-        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForTeacher(anikeevTeacher);
-
-        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
-    }
-
-    @Test
-    public void shouldReturnEmptyMonthlyScheduleForStudent_WhenNotLessonsForStudent() {
-        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForIvanov;
-        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForStudent(ivanovStudent);
-
-        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
-    }
-
-    @Test
-    public void shouldReturnEmptyMonthlyScheduleForGroup_WhenNotLessonsForGroup() {
-        List<DailySchedule> expectedMonthlySchedule = monthlyScheduleForGroup2070;
-        List<DailySchedule> actualMonthlySchedule = monthlyScheduleForUniversity.getMonthlyScheduleForGroup(group2070);
-
-        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }
 
     @Test
@@ -305,24 +210,6 @@ public class MonthlyScheduleTest {
     }
 
     @Test
-    public void shouldAddDailyScheduleToMonthlySchedule_WhenAddDailyScheduleToMonthlySchedule() {
-        List<DailySchedule> expectedStoredDailySchedule = storedDailySchedules;
-        List<DailySchedule> actualStoredDailySchedules = monthlyScheduleForUniversity.getDailySchedules();
-
-        assertEquals(expectedStoredDailySchedule, actualStoredDailySchedules);
-    }
-
-    @Test
-    public void shouldRemoveDailyScheduleFromMonthlySchedule_WhenRemoveDailyScheduleFromMonthlySchedule() {
-        monthlyScheduleForUniversity.removeDailySchedule(september10DailySchedule);
-
-        List<DailySchedule> expectedStoredDailySchedule = emptyStoredDailySchedules;
-        List<DailySchedule> actualStoredDailySchedules = monthlyScheduleForUniversity.getDailySchedules();
-
-        assertEquals(expectedStoredDailySchedule, actualStoredDailySchedules);
-    }
-
-    @Test
     public void shouldAddLessonToDailySchedule_WhenAddLessonToDailySchedule() {
         List<Lesson> expectedStoredLessons = storedLessons;
         List<Lesson> actualStoredLessons = september10DailySchedule.getLessons();
@@ -341,16 +228,6 @@ public class MonthlyScheduleTest {
     }
 
     @Test
-    public void shouldUpdateLesson_WhenUpdateLesson() {
-        plicLesson.update(updateLesson);
-
-        Lesson expectedLesson = updateLesson;
-        Lesson actualLesson = plicLesson;
-
-        assertEquals(expectedLesson, actualLesson);
-    }
-
-    @Test
     public void shouldUpdateDailySchedule_WhenUpdateDailySchedule() {
         september10DailySchedule.update(updateDailySchedule);
 
@@ -358,15 +235,5 @@ public class MonthlyScheduleTest {
         DailySchedule actualDailySchedule = september10DailySchedule;
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
-    }
-
-    @Test
-    public void shouldUpdateMonthlySchedule_WhenUpdateMonthlySchedule() {
-        monthlyScheduleForUniversity.update(updateMonthlySchedule);
-
-        MonthlySchedule expectedMonthlySchedule = updateMonthlySchedule;
-        MonthlySchedule actualMonthlySchedule = monthlyScheduleForUniversity;
-
-        assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }
 }
