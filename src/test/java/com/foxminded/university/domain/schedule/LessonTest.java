@@ -27,7 +27,7 @@ public class LessonTest {
         holopovTeacher.setPatronym("Ivanovich");
         holopovTeacher.setLastName("Holopov");
         holopovTeacher.setEmployeeId(7852);
-        holopovTeacher.addSubject(plicSubject);
+        holopovTeacher.add(plicSubject);
 
         Group group3033 = new Group();
         group3033.setName("3033");

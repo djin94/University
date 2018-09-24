@@ -8,11 +8,11 @@ public class Group {
     private String name;
     private List<Student> students = new ArrayList<>();
 
-    public void addStudent(Student student) {
+    public void add(Student student) {
         students.add(student);
     }
 
-    public void removeStudent(Student student) {
+    public void remove(Student student) {
         students.remove(student);
     }
 

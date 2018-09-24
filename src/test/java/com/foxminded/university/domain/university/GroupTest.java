@@ -27,7 +27,7 @@ public class GroupTest {
 
         group3033 = new Group();
         group3033.setName("3033");
-        group3033.addStudent(kabatovStudent);
+        group3033.add(kabatovStudent);
 
         storedStudents = new ArrayList<>();
         storedStudents.add(kabatovStudent);
@@ -48,7 +48,7 @@ public class GroupTest {
 
     @Test
     public void shouldRemoveStudentFromGroup_WhenRemoveStudentFromGroup() {
-        group3033.removeStudent(kabatovStudent);
+        group3033.remove(kabatovStudent);
 
         List<Student> expectedStoredStudents = emptyStoredStudents;
         List<Student> actualStoredStudents = group3033.getStudents();

@@ -7,11 +7,11 @@ public class Teacher extends Person {
     private int employeeId;
     private List<Subject> subjects = new ArrayList<>();
 
-    public void addSubject(Subject subject) {
+    public void add(Subject subject) {
         subjects.add(subject);
     }
 
-    public void removeSubject(Subject subject) {
+    public void remove(Subject subject) {
         subjects.remove(subject);
     }
 

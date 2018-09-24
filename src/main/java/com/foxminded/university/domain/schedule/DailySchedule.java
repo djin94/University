@@ -27,20 +27,20 @@ public class DailySchedule {
         lessons.remove(lesson);
     }
 
-    public List<Lesson> getDailyScheduleForTeacher(Teacher teacher) {
+    public List<Lesson> findDailySchedule(Teacher teacher) {
         return lessons.stream()
                 .filter(lesson -> lesson.getTeacher().equals(teacher))
                 .collect(Collectors.toList());
     }
 
-    public List<Lesson> getDailyScheduleForStudent(Student student) {
+    public List<Lesson> findDailySchedule(Student student) {
         return lessons.stream()
                 .filter(lesson -> lesson.getGroup().getStudents().stream()
                         .anyMatch(studentInGroup -> studentInGroup.equals(student)))
                 .collect(Collectors.toList());
     }
 
-    public List<Lesson> getDailyScheduleForGroup(Group group) {
+    public List<Lesson> findDailySchedule(Group group) {
         return lessons.stream()
                 .filter(lesson -> lesson.getGroup().equals(group))
                 .collect(Collectors.toList());

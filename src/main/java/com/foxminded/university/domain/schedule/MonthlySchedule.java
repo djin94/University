@@ -30,48 +30,48 @@ public class MonthlySchedule {
         return Optional.empty();
     }
 
-    public List<DailySchedule> getMonthlyScheduleForTeacher(Teacher teacher) {
+    public List<DailySchedule> findMonthlySchedule(Teacher teacher) {
         List<DailySchedule> teacherMonthlySchedule = new ArrayList<>();
         for (DailySchedule dailySchedule : dailySchedules) {
-            teacherMonthlySchedule.add(makeDailyScheduleForTeacher(teacher, dailySchedule));
+            teacherMonthlySchedule.add(createDailySchedule(teacher, dailySchedule));
         }
         return teacherMonthlySchedule;
     }
 
-    private DailySchedule makeDailyScheduleForTeacher(Teacher teacher, DailySchedule allLessonsForDay) {
+    private DailySchedule createDailySchedule(Teacher teacher, DailySchedule allLessonsForDay) {
         DailySchedule teacherDailySchedule = new DailySchedule();
         teacherDailySchedule.setDate(allLessonsForDay.getDate());
-        teacherDailySchedule.setLessons(allLessonsForDay.getDailyScheduleForTeacher(teacher));
+        teacherDailySchedule.setLessons(allLessonsForDay.findDailySchedule(teacher));
         return teacherDailySchedule;
     }
 
-    public List<DailySchedule> getMonthlyScheduleForStudent(Student student) {
+    public List<DailySchedule> findMonthlySchedule(Student student) {
         List<DailySchedule> studentMonthlySchedule = new ArrayList<>();
         for (DailySchedule dailySchedule : dailySchedules) {
-            studentMonthlySchedule.add(makeDailyScheduleForStudent(student, dailySchedule));
+            studentMonthlySchedule.add(createDailySchedule(student, dailySchedule));
         }
         return studentMonthlySchedule;
     }
 
-    private DailySchedule makeDailyScheduleForStudent(Student student, DailySchedule allLessonsForDay) {
+    private DailySchedule createDailySchedule(Student student, DailySchedule allLessonsForDay) {
         DailySchedule studentDailySchedule = new DailySchedule();
         studentDailySchedule.setDate(allLessonsForDay.getDate());
-        studentDailySchedule.setLessons(allLessonsForDay.getDailyScheduleForStudent(student));
+        studentDailySchedule.setLessons(allLessonsForDay.findDailySchedule(student));
         return studentDailySchedule;
     }
 
-    public List<DailySchedule> getMonthlyScheduleForGroup(Group group) {
+    public List<DailySchedule> findMonthlySchedule(Group group) {
         List<DailySchedule> groupMonthlySchedule = new ArrayList<>();
         for (DailySchedule dailySchedule : dailySchedules) {
-            groupMonthlySchedule.add(makeDailyScheduleForGroup(group, dailySchedule));
+            groupMonthlySchedule.add(createDailySchedule(group, dailySchedule));
         }
         return groupMonthlySchedule;
     }
 
-    private DailySchedule makeDailyScheduleForGroup(Group group, DailySchedule allLessonsForDay) {
+    private DailySchedule createDailySchedule(Group group, DailySchedule allLessonsForDay) {
         DailySchedule groupDailySchedule = new DailySchedule();
         groupDailySchedule.setDate(allLessonsForDay.getDate());
-        groupDailySchedule.setLessons(allLessonsForDay.getDailyScheduleForGroup(group));
+        groupDailySchedule.setLessons(allLessonsForDay.findDailySchedule(group));
         return groupDailySchedule;
     }
 

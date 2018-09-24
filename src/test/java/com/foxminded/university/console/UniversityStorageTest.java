@@ -2,14 +2,12 @@ package com.foxminded.university.console;
 
 import com.foxminded.university.domain.schedule.DailySchedule;
 import com.foxminded.university.domain.schedule.Lesson;
-import com.foxminded.university.domain.schedule.MonthlySchedule;
 import com.foxminded.university.domain.university.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -38,7 +36,7 @@ public class UniversityStorageTest {
         holopovTeacher.setPatronym("Ivanovich");
         holopovTeacher.setLastName("Holopov");
         holopovTeacher.setEmployeeId(7852);
-        holopovTeacher.addSubject(programmingOfLogicIntegratedCircuitsSubject);
+        holopovTeacher.add(programmingOfLogicIntegratedCircuitsSubject);
 
         kabatovStudent = new Student();
         kabatovStudent.setFirstName("Evgeny");
@@ -48,13 +46,13 @@ public class UniversityStorageTest {
 
         group3033 = new Group();
         group3033.setName("3033");
-        group3033.addStudent(kabatovStudent);
+        group3033.add(kabatovStudent);
 
         Department acsDepartment = new Department();
         acsDepartment.setName("ASU");
-        acsDepartment.addGroup(group3033);
-        acsDepartment.addTeacher(holopovTeacher);
-        acsDepartment.addSubject(programmingOfLogicIntegratedCircuitsSubject);
+        acsDepartment.add(group3033);
+        acsDepartment.add(holopovTeacher);
+        acsDepartment.add(programmingOfLogicIntegratedCircuitsSubject);
 
         Audience audience313 = new Audience();
         audience313.setNumber(313);
@@ -63,12 +61,12 @@ public class UniversityStorageTest {
 
         Faculty faituFaculty = new Faculty();
         faituFaculty.setName("FAITU");
-        faituFaculty.addAudience(audience313);
-        faituFaculty.addDepartment(acsDepartment);
+        faituFaculty.add(audience313);
+        faituFaculty.add(acsDepartment);
 
         University university = new University();
         university.setName("RSREU");
-        university.addFaculty(faituFaculty);
+        university.add(faituFaculty);
 
         Lesson plicLesson = new Lesson();
         plicLesson.setSubject(programmingOfLogicIntegratedCircuitsSubject);
@@ -119,7 +117,7 @@ public class UniversityStorageTest {
     @Test
     public void shouldReturnDailyScheduleForTeacher_WhenGetDailyScheduleForTeacher() {
         DailySchedule expectedDailySchedule = dailyScheduleForTeacher;
-        DailySchedule actualDailySchedule = UniversityStorage.getInstance().getDailyScheduleForTeacher(holopovTeacher, 10).get();
+        DailySchedule actualDailySchedule = UniversityStorage.getInstance().findDailyScheduleForTeacher(holopovTeacher, 10).get();
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -127,7 +125,7 @@ public class UniversityStorageTest {
     @Test
     public void shouldReturnDailyScheduleForStudent_WhenGetDailyScheduleForStudent() {
         DailySchedule expectedDailySchedule = dailyScheduleForStudent;
-        DailySchedule actualDailySchedule = UniversityStorage.getInstance().getDailyScheduleForStudent(kabatovStudent, 10).get();
+        DailySchedule actualDailySchedule = UniversityStorage.getInstance().findDailyScheduleForStudent(kabatovStudent, 10).get();
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -135,7 +133,7 @@ public class UniversityStorageTest {
     @Test
     public void shouldReturnDailyScheduleForGroup_WhenGetDailyScheduleForGroup() {
         DailySchedule expectedDailySchedule = dailyScheduleForGroup;
-        DailySchedule actualDailySchedule = UniversityStorage.getInstance().getDailyScheduleForGroup(group3033, 10).get();
+        DailySchedule actualDailySchedule = UniversityStorage.getInstance().findDailyScheduleForGroup(group3033, 10).get();
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -143,7 +141,7 @@ public class UniversityStorageTest {
     @Test
     public void shouldReturnEmptyDailyScheduleForTeacher_WhenNotLessonsForTeacher() {
         DailySchedule expectedDailySchedule = emptyDailySchedule;
-        DailySchedule actualDailySchedule = UniversityStorage.getInstance().getDailyScheduleForTeacher(anikeevTeacher, 10).get();
+        DailySchedule actualDailySchedule = UniversityStorage.getInstance().findDailyScheduleForTeacher(anikeevTeacher, 10).get();
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -151,7 +149,7 @@ public class UniversityStorageTest {
     @Test
     public void shouldReturnEmptyDailyScheduleForStudent_WhenNotLessonsForStudent() {
         DailySchedule expectedDailySchedule = emptyDailySchedule;
-        DailySchedule actualDailySchedule = UniversityStorage.getInstance().getDailyScheduleForStudent(ivanovStudent, 10).get();
+        DailySchedule actualDailySchedule = UniversityStorage.getInstance().findDailyScheduleForStudent(ivanovStudent, 10).get();
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -159,7 +157,7 @@ public class UniversityStorageTest {
     @Test
     public void shouldReturnEmptyDailyScheduleForGroup_WhenNotLessonsForGroup() {
         DailySchedule expectedDailySchedule = emptyDailySchedule;
-        DailySchedule actualDailySchedule = UniversityStorage.getInstance().getDailyScheduleForGroup(group2070, 10).get();
+        DailySchedule actualDailySchedule = UniversityStorage.getInstance().findDailyScheduleForGroup(group2070, 10).get();
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }

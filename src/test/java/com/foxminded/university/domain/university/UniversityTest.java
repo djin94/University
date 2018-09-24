@@ -25,7 +25,7 @@ public class UniversityTest {
 
         university = new University();
         university.setName("RSREU");
-        university.addFaculty(faituFaculty);
+        university.add(faituFaculty);
 
         storedFaculties = new ArrayList<>();
         storedFaculties.add(faituFaculty);
@@ -46,7 +46,7 @@ public class UniversityTest {
 
     @Test
     public void shouldRemoveFacultyFromUniversity_WhenRemoveFacultyFromUniversity() {
-        university.removeFaculty(faituFaculty);
+        university.remove(faituFaculty);
 
         List<Faculty> expectedFaculties = emptyStoredFaculties;
         List<Faculty> actualStoredFaculties = university.getFaculties();

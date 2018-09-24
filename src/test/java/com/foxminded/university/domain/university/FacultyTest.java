@@ -31,8 +31,8 @@ public class FacultyTest {
 
         faituFaculty = new Faculty();
         faituFaculty.setName("FAITU");
-        faituFaculty.addAudience(audience313);
-        faituFaculty.addDepartment(acsDepartment);
+        faituFaculty.add(audience313);
+        faituFaculty.add(acsDepartment);
 
         storedDepartments = new ArrayList<>();
         storedDepartments.add(acsDepartment);
@@ -58,7 +58,7 @@ public class FacultyTest {
 
     @Test
     public void shouldRemoveAudienceFromFaculty_WhenRemoveAudienceFromFaculty() {
-        faituFaculty.removeAudience(audience313);
+        faituFaculty.remove(audience313);
 
         List<Audience> expectedAudiences = emptyStoredAudiences;
         List<Audience> actualStoredAudiences = faituFaculty.getAudiences();
@@ -76,7 +76,7 @@ public class FacultyTest {
 
     @Test
     public void shouldRemoveDepartmentFromFaculty_WhenRemoveDepartmentFromFaculty() {
-        faituFaculty.removeDepartment(acsDepartment);
+        faituFaculty.remove(acsDepartment);
 
         List<Department> expectedDepartments = emptyStoredDepartments;
         List<Department> actualStoredDepartments = faituFaculty.getDepartments();

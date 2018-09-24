@@ -45,7 +45,7 @@ public class DailyScheduleTest {
         holopovTeacher.setPatronym("Ivanovich");
         holopovTeacher.setLastName("Holopov");
         holopovTeacher.setEmployeeId(7852);
-        holopovTeacher.addSubject(plicSubject);
+        holopovTeacher.add(plicSubject);
 
         kabatovStudent = new Student();
         kabatovStudent.setFirstName("Evgeny");
@@ -55,13 +55,13 @@ public class DailyScheduleTest {
 
         group3033 = new Group();
         group3033.setName("3033");
-        group3033.addStudent(kabatovStudent);
+        group3033.add(kabatovStudent);
 
         Department acsDepartment = new Department();
         acsDepartment.setName("ASU");
-        acsDepartment.addGroup(group3033);
-        acsDepartment.addTeacher(holopovTeacher);
-        acsDepartment.addSubject(plicSubject);
+        acsDepartment.add(group3033);
+        acsDepartment.add(holopovTeacher);
+        acsDepartment.add(plicSubject);
 
         Audience audience313 = new Audience();
         audience313.setNumber(313);
@@ -70,12 +70,12 @@ public class DailyScheduleTest {
 
         Faculty faituFaculty = new Faculty();
         faituFaculty.setName("FAITU");
-        faituFaculty.addAudience(audience313);
-        faituFaculty.addDepartment(acsDepartment);
+        faituFaculty.add(audience313);
+        faituFaculty.add(acsDepartment);
 
         University university = new University();
         university.setName("RSREU");
-        university.addFaculty(faituFaculty);
+        university.add(faituFaculty);
 
         plicLesson = new Lesson();
         plicLesson.setSubject(plicSubject);
@@ -164,7 +164,7 @@ public class DailyScheduleTest {
     @Test
     public void shouldReturnDailyScheduleForTeacher_WhenGetDailyScheduleForTeacher() {
         List<Lesson> expectedDailySchedule = dailyScheduleForHolopov;
-        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForTeacher(holopovTeacher);
+        List<Lesson> actualDailySchedule = september10DailySchedule.findDailySchedule(holopovTeacher);
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -172,7 +172,7 @@ public class DailyScheduleTest {
     @Test
     public void shouldReturnDailyScheduleForStudent_WhenGetDailyScheduleForStudent() {
         List<Lesson> expectedDailySchedule = dailyScheduleForKabatov;
-        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForStudent(kabatovStudent);
+        List<Lesson> actualDailySchedule = september10DailySchedule.findDailySchedule(kabatovStudent);
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -180,7 +180,7 @@ public class DailyScheduleTest {
     @Test
     public void shouldReturnDailyScheduleForGroup_WhenGetDailyScheduleForGroup() {
         List<Lesson> expectedDailySchedule = dailyScheduleForGroup3033;
-        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForGroup(group3033);
+        List<Lesson> actualDailySchedule = september10DailySchedule.findDailySchedule(group3033);
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -188,7 +188,7 @@ public class DailyScheduleTest {
     @Test
     public void shouldReturnEmptyDailyScheduleForTeacher_WhenNotLessonsForTeacher() {
         List<Lesson> expectedDailySchedule = dailyScheduleForAnikeev;
-        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForTeacher(anikeevTeacher);
+        List<Lesson> actualDailySchedule = september10DailySchedule.findDailySchedule(anikeevTeacher);
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -196,7 +196,7 @@ public class DailyScheduleTest {
     @Test
     public void shouldReturnEmptyDailyScheduleForStudent_WhenNotLessonsForStudent() {
         List<Lesson> expectedDailySchedule = dailyScheduleForIvanov;
-        List<Lesson> actualDailySchedule = september10DailySchedule.getDailyScheduleForStudent(ivanovStudent);
+        List<Lesson> actualDailySchedule = september10DailySchedule.findDailySchedule(ivanovStudent);
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -204,7 +204,7 @@ public class DailyScheduleTest {
     @Test
     public void shouldReturnEmptyDailyScheduleForGroup_WhenNotLessonsForGroup() {
         List<Lesson> expectedMonthlySchedule = dailyScheduleForGroup2070;
-        List<Lesson> actualMonthlySchedule = september10DailySchedule.getDailyScheduleForGroup(group2070);
+        List<Lesson> actualMonthlySchedule = september10DailySchedule.findDailySchedule(group2070);
 
         assertEquals(expectedMonthlySchedule, actualMonthlySchedule);
     }

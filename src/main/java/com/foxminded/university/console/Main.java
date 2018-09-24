@@ -57,16 +57,16 @@ public class Main {
         Department chosenDepartment = university.getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
         if (choiceWhoseSchedule == 1) {
             Teacher teacher = chosenDepartment.getTeachers().get(getChoiceTeacherFromConsole(chosenDepartment) - 1);
-            return monthlySchedule.getMonthlyScheduleForTeacher(teacher);
+            return monthlySchedule.findMonthlySchedule(teacher);
         }
         if (choiceWhoseSchedule == 2) {
             Group group = chosenDepartment.getGroups().get(getChoiceGroupFromConsole(chosenDepartment) - 1);
             Student student = group.getStudents().get(getChoiceStudentFromConsole(group) - 1);
-            return monthlySchedule.getMonthlyScheduleForStudent(student);
+            return monthlySchedule.findMonthlySchedule(student);
         }
         if (choiceWhoseSchedule == 3) {
             Group group = chosenDepartment.getGroups().get(getChoiceGroupFromConsole(chosenDepartment) - 1);
-            return monthlySchedule.getMonthlyScheduleForGroup(group);
+            return monthlySchedule.findMonthlySchedule(group);
         }
         return Collections.emptyList();
     }
@@ -114,16 +114,16 @@ public class Main {
         Department department = university.getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
         if (choiceWhoseSchedule == 1) {
             Teacher teacher = department.getTeachers().get(getChoiceTeacherFromConsole(department) - 1);
-            return UniversityStorage.getInstance().getDailyScheduleForTeacher(teacher, choiceDay);
+            return UniversityStorage.getInstance().findDailyScheduleForTeacher(teacher, choiceDay);
         }
         if (choiceWhoseSchedule == 2) {
             Group group = department.getGroups().get(getChoiceGroupFromConsole(department) - 1);
             Student student = group.getStudents().get(getChoiceStudentFromConsole(group) - 1);
-            return UniversityStorage.getInstance().getDailyScheduleForStudent(student, choiceDay);
+            return UniversityStorage.getInstance().findDailyScheduleForStudent(student, choiceDay);
         }
         if (choiceWhoseSchedule == 3) {
             Group group = department.getGroups().get(getChoiceGroupFromConsole(department) - 1);
-            return UniversityStorage.getInstance().getDailyScheduleForGroup(group, choiceDay);
+            return UniversityStorage.getInstance().findDailyScheduleForGroup(group, choiceDay);
         }
         return Optional.empty();
     }

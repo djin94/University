@@ -32,20 +32,20 @@ public class UniversityStorage {
         return monthlyScheduleForSeptember;
     }
 
-    public Optional<DailySchedule> getDailyScheduleForTeacher(Teacher teacher, int day) {
-        return monthlyScheduleForSeptember.getMonthlyScheduleForTeacher(teacher).stream()
+    public Optional<DailySchedule> findDailyScheduleForTeacher(Teacher teacher, int day) {
+        return monthlyScheduleForSeptember.findMonthlySchedule(teacher).stream()
                 .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day)
                 .findFirst();
     }
 
-    public Optional<DailySchedule> getDailyScheduleForStudent(Student student, int day) {
-        return monthlyScheduleForSeptember.getMonthlyScheduleForStudent(student).stream()
+    public Optional<DailySchedule> findDailyScheduleForStudent(Student student, int day) {
+        return monthlyScheduleForSeptember.findMonthlySchedule(student).stream()
                 .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day)
                 .findFirst();
     }
 
-    public Optional<DailySchedule> getDailyScheduleForGroup(Group group, int day) {
-        return monthlyScheduleForSeptember.getMonthlyScheduleForGroup(group).stream()
+    public Optional<DailySchedule> findDailyScheduleForGroup(Group group, int day) {
+        return monthlyScheduleForSeptember.findMonthlySchedule(group).stream()
                 .filter(dailySchedule -> dailySchedule.getDate().getDayOfMonth() == day)
                 .findFirst();
     }

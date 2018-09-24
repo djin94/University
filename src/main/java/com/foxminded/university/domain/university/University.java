@@ -7,11 +7,11 @@ public class University {
     private String name;
     private List<Faculty> faculties = new ArrayList<>();
 
-    public void addFaculty(Faculty faculty) {
+    public void add(Faculty faculty) {
         faculties.add(faculty);
     }
 
-    public void removeFaculty(Faculty faculty) {
+    public void remove(Faculty faculty) {
         faculties.remove(faculty);
     }
 

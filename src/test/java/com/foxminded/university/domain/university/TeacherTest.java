@@ -26,7 +26,7 @@ public class TeacherTest {
         holopovTeacher.setPatronym("Ivanovich");
         holopovTeacher.setLastName("Holopov");
         holopovTeacher.setEmployeeId(7852);
-        holopovTeacher.addSubject(plicSubject);
+        holopovTeacher.add(plicSubject);
 
         storedSubjects = new ArrayList<>();
         storedSubjects.add(plicSubject);
@@ -49,7 +49,7 @@ public class TeacherTest {
 
     @Test
     public void shouldRemoveSubjectFromTeacher_WhenRemoveSubjectFromTeacher() {
-        holopovTeacher.removeSubject(plicSubject);
+        holopovTeacher.remove(plicSubject);
 
         List<Subject> expectedStoredSubjects = emptyStoredSubjects;
         List<Subject> actualStoredSubjects = holopovTeacher.getSubjects();

@@ -36,13 +36,13 @@ public class DepartmentTest {
         holopovTeacher.setPatronym("Ivanovich");
         holopovTeacher.setLastName("Holopov");
         holopovTeacher.setEmployeeId(7852);
-        holopovTeacher.addSubject(plicSubject);
+        holopovTeacher.add(plicSubject);
 
         acsDepartment = new Department();
         acsDepartment.setName("ASU");
-        acsDepartment.addGroup(group3033);
-        acsDepartment.addTeacher(holopovTeacher);
-        acsDepartment.addSubject(plicSubject);
+        acsDepartment.add(group3033);
+        acsDepartment.add(holopovTeacher);
+        acsDepartment.add(plicSubject);
 
         storedTeachers = new ArrayList<>();
         storedTeachers.add(holopovTeacher);
@@ -73,7 +73,7 @@ public class DepartmentTest {
 
     @Test
     public void shouldRemoveTeacherFromDepartment_WhenRemoveTeacherFromDepartment() {
-        acsDepartment.removeTeacher(holopovTeacher);
+        acsDepartment.remove(holopovTeacher);
 
         List<Teacher> expectedStoredTeachers = emptyStoredTeachers;
         List<Teacher> actualStoredTeachers = acsDepartment.getTeachers();
@@ -91,7 +91,7 @@ public class DepartmentTest {
 
     @Test
     public void shouldRemoveGroupFromDepartment_WhenRemoveGroupFromDepartment() {
-        acsDepartment.removeGroup(group3033);
+        acsDepartment.remove(group3033);
 
         List<Group> expectedStoredGroups = emptyStoredGroups;
         List<Group> actualStoredGroups = acsDepartment.getGroups();
@@ -109,7 +109,7 @@ public class DepartmentTest {
 
     @Test
     public void shouldRemoveSubjectFromDepartment_WhenRemoveSubjectFromDepartment() {
-        acsDepartment.removeSubject(plicSubject);
+        acsDepartment.remove(plicSubject);
 
         List<Subject> expectedStoredSubjects = emptyStoredSubjects;
         List<Subject> actualStoredSubjects = acsDepartment.getSubjects();

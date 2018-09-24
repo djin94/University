@@ -16,19 +16,19 @@ public class Faculty {
         this.audiences.addAll(faculty.audiences);
     }
 
-    public void addDepartment(Department department) {
+    public void add(Department department) {
         departments.add(department);
     }
 
-    public void removeDepartment(Department department) {
+    public void remove(Department department) {
         departments.remove(department);
     }
 
-    public void addAudience(Audience audience) {
+    public void add(Audience audience) {
         audiences.add(audience);
     }
 
-    public void removeAudience(Audience audience) {
+    public void remove(Audience audience) {
         audiences.remove(audience);
     }
 

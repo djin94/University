@@ -14,27 +14,27 @@ public class Department {
         return teachers.stream().filter(teacher -> teacher.getEmployeeId() == employeeId).findFirst();
     }
 
-    public void addTeacher(Teacher teacher) {
+    public void add(Teacher teacher) {
         teachers.add(teacher);
     }
 
-    public void removeTeacher(Teacher teacher) {
+    public void remove(Teacher teacher) {
         teachers.remove(teacher);
     }
 
-    public void addGroup(Group group) {
+    public void add(Group group) {
         groups.add(group);
     }
 
-    public void removeGroup(Group group) {
+    public void remove(Group group) {
         groups.remove(group);
     }
 
-    public void addSubject(Subject subject) {
+    public void add(Subject subject) {
         subjects.add(subject);
     }
 
-    public void removeSubject(Subject subject) {
+    public void remove(Subject subject) {
         subjects.remove(subject);
     }
 
