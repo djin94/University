@@ -86,12 +86,12 @@ public class DailyScheduleTest {
 
         september10DailySchedule = new DailySchedule();
         september10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
-        september10DailySchedule.addLesson(plicLesson);
+        september10DailySchedule.add(plicLesson);
 
         monthlyScheduleForUniversity = new MonthlySchedule();
         monthlyScheduleForUniversity.setMonth(9);
         monthlyScheduleForUniversity.setYear(2018);
-        monthlyScheduleForUniversity.addDailySchedule(september10DailySchedule);
+        monthlyScheduleForUniversity.add(september10DailySchedule);
 
         anikeevTeacher = new Teacher();
         anikeevTeacher.setFirstName("Sergey");
@@ -219,7 +219,7 @@ public class DailyScheduleTest {
 
     @Test
     public void shouldRemoveLessonFromDailySchedule_WhenRemoveLessonFromDailySchedule() {
-        september10DailySchedule.removeLesson(plicLesson);
+        september10DailySchedule.remove(plicLesson);
 
         List<Lesson> expectedStoredLessons = emptyStoredLessons;
         List<Lesson> actualStoredLessons = september10DailySchedule.getLessons();

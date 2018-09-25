@@ -14,11 +14,11 @@ public class MonthlySchedule {
     private int month;
     private int year;
 
-    public void addDailySchedule(DailySchedule dailySchedule) {
+    public void add(DailySchedule dailySchedule) {
         dailySchedules.add(dailySchedule);
     }
 
-    public void removeDailySchedule(DailySchedule dailySchedule) {
+    public void remove(DailySchedule dailySchedule) {
         dailySchedules.remove(dailySchedule);
     }
 

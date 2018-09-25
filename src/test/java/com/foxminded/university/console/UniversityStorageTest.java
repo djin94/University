@@ -88,8 +88,8 @@ public class UniversityStorageTest {
 
         DailySchedule september10DailySchedule = new DailySchedule();
         september10DailySchedule.setDate(LocalDate.of(2018, 9, 10));
-        september10DailySchedule.addLesson(plicLesson);
-        september10DailySchedule.addLesson(informationSystemsSoftwareLesson);
+        september10DailySchedule.add(plicLesson);
+        september10DailySchedule.add(informationSystemsSoftwareLesson);
 
         dailyScheduleForTeacher = september10DailySchedule;
         dailyScheduleForGroup = september10DailySchedule;

@@ -19,11 +19,11 @@ public class DailySchedule {
         this.date = dailySchedule.date;
     }
 
-    public void addLesson(Lesson lesson) {
+    public void add(Lesson lesson) {
         lessons.add(lesson);
     }
 
-    public void removeLesson(Lesson lesson) {
+    public void remove(Lesson lesson) {
         lessons.remove(lesson);
     }
 
