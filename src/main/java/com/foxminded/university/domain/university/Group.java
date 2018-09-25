@@ -38,7 +38,7 @@ public class Group {
         this.students = students;
     }
 
-    public Optional<Student> getStudentByNumberOfMarkBook(int numberMarkBook) {
+    public Optional<Student> findStudent(int numberMarkBook) {
         for (Student student : students) {
             if (student.getNumberOfMarkBook() == numberMarkBook) {
                 return Optional.of(student);

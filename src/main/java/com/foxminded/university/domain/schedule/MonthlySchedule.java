@@ -22,7 +22,7 @@ public class MonthlySchedule {
         dailySchedules.remove(dailySchedule);
     }
 
-    public Optional<DailySchedule> getDailySchedule(LocalDate date) {
+    public Optional<DailySchedule> findDailySchedule(LocalDate date) {
         for (DailySchedule dailySchedule : dailySchedules) {
             if (dailySchedule.getDate().equals(date))
                 return Optional.of(dailySchedule);

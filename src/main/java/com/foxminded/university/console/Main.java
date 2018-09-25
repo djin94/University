@@ -15,7 +15,7 @@ public class Main {
         do {
             try {
                 main.printUniversityStructure();
-                List<DailySchedule> userSchedule = main.getUserSchedule();
+                List<DailySchedule> userSchedule = main.createUserSchedule();
                 main.printSchedule(userSchedule);
             } catch (Exception e) {
                 System.out.println("Enter only the specified numbers");
@@ -30,7 +30,7 @@ public class Main {
         System.out.println(UniversityStorage.getInstance().getUniversity().getUniversityStructure());
     }
 
-    private List<DailySchedule> getUserSchedule() {
+    private List<DailySchedule> createUserSchedule() {
         int choice = getInt();
         List<DailySchedule> userSchedule = new ArrayList<>();
         if (choice == 1) {
@@ -108,7 +108,7 @@ public class Main {
     private Optional<DailySchedule> getUserDailySchedule() {
         University university = UniversityStorage.getInstance().getUniversity();
         int choiceWhoseSchedule = getChoiceFromConsole("Choose and write: 1 - Teacher, 2 - Student, 3 - Group");
-        int choiceDay = getChoiceDayFromConsole();
+        int choiceDay = getDayFromConsole();
         int choiceFaculty = getChoiceFromConsole("Choose faculty:\n" + university.getListFaculties());
         int choiceDepartment = getChoiceDepartmentFromConsole(university.getFaculties().get(choiceFaculty - 1));
         Department department = university.getFaculties().get(choiceFaculty - 1).getDepartments().get(choiceDepartment - 1);
@@ -128,7 +128,7 @@ public class Main {
         return Optional.empty();
     }
 
-    private int getChoiceDayFromConsole() {
+    private int getDayFromConsole() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a day");
         return scanner.nextInt();

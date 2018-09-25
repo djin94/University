@@ -148,7 +148,7 @@ public class DailyScheduleTest {
     @Test
     public void shouldReturnDailySchedule_WhenGetDailyScheduleByDate() {
         DailySchedule expectedDailySchedule = september10DailySchedule;
-        DailySchedule actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 10)).get();
+        DailySchedule actualDailySchedule = monthlyScheduleForUniversity.findDailySchedule(LocalDate.of(2018, 9, 10)).get();
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
@@ -156,7 +156,7 @@ public class DailyScheduleTest {
     @Test
     public void shouldReturnEmptyDailySchedule_WhenNotDailyScheduleForDate() {
         Optional<DailySchedule> expectedDailySchedule = Optional.empty();
-        Optional<DailySchedule> actualDailySchedule = monthlyScheduleForUniversity.getDailySchedule(LocalDate.of(2018, 9, 11));
+        Optional<DailySchedule> actualDailySchedule = monthlyScheduleForUniversity.findDailySchedule(LocalDate.of(2018, 9, 11));
 
         assertEquals(expectedDailySchedule, actualDailySchedule);
     }
