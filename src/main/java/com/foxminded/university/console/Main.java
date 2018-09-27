@@ -8,7 +8,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         boolean stop;
-
         Main main = new Main();
         System.out.println("Hello! Whose and what schedule do you want to see?");
         do {
@@ -19,6 +18,7 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("Enter only the specified numbers");
             } finally {
+                Scanner scanner = new Scanner(System.in);
                 System.out.println("Do you want to continue? (y/n)");
                 stop = scanner.next().equals("n");
             }
