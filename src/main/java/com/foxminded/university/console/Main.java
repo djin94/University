@@ -47,7 +47,8 @@ public class Main {
     }
 
     private int getNumberFromConsole() {
-        return getNumberFromConsole();
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 
     private List<DailySchedule> getUserMonthlySchedule() {
