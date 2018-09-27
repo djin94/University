@@ -47,13 +47,6 @@ public class Group {
         return Optional.empty();
     }
 
-    public String showListStudents() {
-        String listStudents = name + "\n";
-        for (int i = 0; i < students.size(); i++)
-            listStudents += String.valueOf(i + 1) + " - " + students.get(i) + "\n";
-        return listStudents;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

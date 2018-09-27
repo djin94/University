@@ -1,7 +1,6 @@
 package com.foxminded.university.console;
 
-import com.foxminded.university.domain.schedule.DailySchedule;
-import com.foxminded.university.domain.schedule.MonthlySchedule;
+import com.foxminded.university.domain.schedule.*;
 import com.foxminded.university.domain.university.*;
 
 import java.util.*;
@@ -9,7 +8,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         boolean stop;
-        Scanner scanner = new Scanner(System.in);
+
         Main main = new Main();
         System.out.println("Hello! Whose and what schedule do you want to see?");
         do {
@@ -43,9 +42,13 @@ public class Main {
     }
 
     private int getInt() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Choose schedule type: 1 - For month, 2 - For day");
-        return scanner.nextInt();
+        return getNumberFromConsole();
+    }
+
+    private int getNumberFromConsole() {
+
+        return getNumberFromConsole();
     }
 
     private List<DailySchedule> getUserMonthlySchedule() {
@@ -72,37 +75,39 @@ public class Main {
     }
 
     private int getChoiceFromConsole(String printString) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println(printString);
-        return scanner.nextInt();
+        return getNumberFromConsole();
     }
 
     private int getChoiceDepartmentFromConsole(Faculty faculty) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Choose department:");
         System.out.println(faculty.showListDepartment());
-        return scanner.nextInt();
+        return getNumberFromConsole();
     }
 
     private int getChoiceTeacherFromConsole(Department department) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Choose teacher:");
         System.out.println(department.showListTeachers());
-        return scanner.nextInt();
+        return getNumberFromConsole();
     }
 
     private int getChoiceGroupFromConsole(Department department) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Choose group:");
         System.out.println(department.showListGroups());
-        return scanner.nextInt();
+        return getNumberFromConsole();
     }
 
     private int getChoiceStudentFromConsole(Group group) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Choose student:");
-        System.out.println(group.showListStudents());
-        return scanner.nextInt();
+        System.out.println(showListStudents(group));
+        return getNumberFromConsole();
+    }
+
+    public String showListStudents(Group group) {
+        String listStudents = group.getName() + "\n";
+        for (int i = 0; i < group.getStudents().size(); i++)
+            listStudents += String.valueOf(i + 1) + " - " + group.getStudents().get(i) + "\n";
+        return listStudents;
     }
 
     private Optional<DailySchedule> getUserDailySchedule() {
@@ -129,9 +134,8 @@ public class Main {
     }
 
     private int getDayFromConsole() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a day");
-        return scanner.nextInt();
+        return getNumberFromConsole();
     }
 
     private void printSchedule(List<DailySchedule> dailySchedules) {
