@@ -30,7 +30,7 @@ public class Main {
     }
 
     private List<DailySchedule> createUserSchedule() {
-        int choice = getInt();
+        int choice = getChoiceFromConsole("Choose schedule type: 1 - For month, 2 - For day");
         List<DailySchedule> userSchedule = new ArrayList<>();
         if (choice == 1) {
             userSchedule.addAll(getUserMonthlySchedule());
@@ -41,8 +41,8 @@ public class Main {
         return userSchedule;
     }
 
-    private int getInt() {
-        System.out.println("Choose schedule type: 1 - For month, 2 - For day");
+    private int getChoiceFromConsole(String printString) {
+        System.out.println(printString);
         return getNumberFromConsole();
     }
 
@@ -71,11 +71,6 @@ public class Main {
             return monthlySchedule.findMonthlySchedule(group);
         }
         return Collections.emptyList();
-    }
-
-    private int getChoiceFromConsole(String printString) {
-        System.out.println(printString);
-        return getNumberFromConsole();
     }
 
     private int getChoiceDepartmentFromConsole(Faculty faculty) {
