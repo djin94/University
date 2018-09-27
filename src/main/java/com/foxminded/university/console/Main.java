@@ -47,7 +47,6 @@ public class Main {
     }
 
     private int getNumberFromConsole() {
-
         return getNumberFromConsole();
     }
 
